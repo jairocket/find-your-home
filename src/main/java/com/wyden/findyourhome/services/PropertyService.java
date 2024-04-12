@@ -1,9 +1,9 @@
-package services;
+package com.wyden.findyourhome.services;
 
-import entities.Property;
+import com.wyden.findyourhome.repositories.PropertyRepository;
+import com.wyden.findyourhome.entities.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repositories.PropertyRepository;
 
 import java.util.List;
 

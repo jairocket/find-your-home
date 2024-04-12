@@ -1,6 +1,6 @@
-package entities;
+package com.wyden.findyourhome.entities;
 
-import entities.enums.PropertyType;
+import com.wyden.findyourhome.entities.enums.PropertyType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -19,7 +19,7 @@ public class Property implements Serializable {
     private Double taxes;
     private Double fee;
     private Double area;
-    private final PropertyType type;
+    private PropertyType type;
 
     public Property(
             String address,
@@ -39,6 +39,9 @@ public class Property implements Serializable {
         this.fee = fee;
         this.area = area;
         this.type = type;
+    }
+
+    public Property() {
     }
 
     public Long getId() {

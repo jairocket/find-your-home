@@ -1,4 +1,4 @@
-package entities;
+package com.wyden.findyourhome.entities;
 
 import java.util.List;
 
