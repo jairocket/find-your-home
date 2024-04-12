@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: find-your-home
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/find_your_home_db"
+    username: postgres
+    password: postgres
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
