@@ -1,0 +1,22 @@
+Padronização de Banco de Dados
+
+Introdução:
+A padronização de banco de dados desempenha um papel crucial na consistência, legibilidade e manutenção eficiente dos sistemas de informação. Este documento propõe uma abordagem de padronização para os nomes das tabelas, utilizando um prefixo composto pelas duas primeiras e duas últimas letras do nome da tabela, seguido pelo tipo de dado representado pela tabela.
+
+Diretrizes:
+
+Prefixo de Quatro Letras: O prefixo será composto pelas duas primeiras letras e duas últimas letras do nome da tabela.
+
+Tipo de Dado: Após o prefixo, será utilizado o tipo de dado representado pela tabela. Exemplos incluem "cd" para código, "ds" para descrição, "vl" para valores, "dt" para datas
+
+Use Snake Case: Os nomes das tabelas devem estar em snake_case, ou seja, as palavras são separadas por underscores (_) e todas as letras são minúsculas, garantindo a legibilidade dos nomes das tabelas.
+
+Exemplo:
+Para a tabela "cliente":
+
+Prefixo: Utilizaremos as duas primeiras letras "cl" e as duas últimas letras "te".
+
+Tipo de Dado:
+
+clte_cd_cliente_id: Representa o código identificador do cliente.
+clte_ds_cliente_description: Representa a descrição do cliente.
