@@ -15,4 +15,8 @@ public class PropertyService {
     public List<Property> findAll() {
         return repository.findAll();
     }
+
+    public Property create(Property newProperty) {
+        return repository.save(newProperty);
+    }
 }

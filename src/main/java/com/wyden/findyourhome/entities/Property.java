@@ -15,6 +15,7 @@ public class Property implements Serializable {
     private String address;
     private Integer rooms;
     private Integer bathrooms;
+    @Column(name = "private_parking_space")
     private Integer privateParkingSpace;
     private Double taxes;
     private Double fee;
