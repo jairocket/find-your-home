@@ -8,7 +8,7 @@
 
 ### Crie um contêiner com uma instância de banco de dados Postgres
 ```
-docker-compose up
+docker-compose up -d
 ```
 ### Verifique se o contêiner foi criado
 ```
