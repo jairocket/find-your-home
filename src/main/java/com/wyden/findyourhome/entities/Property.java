@@ -2,17 +2,19 @@ package com.wyden.findyourhome.entities;
 
 import com.wyden.findyourhome.entities.enums.PropertyType;
 import jakarta.persistence.*;
-
+import java.util.List;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "property")
+@Table(name = "PROPERTY")
 public class Property implements Serializable {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String address;
+    @OneToOne(mappedBy = "property", cascade = CascadeType.ALL)
+    private Address address;
     private Integer rooms;
     private Integer bathrooms;
     @Column(name = "private_parking_space")
@@ -21,9 +23,13 @@ public class Property implements Serializable {
     private Double fee;
     private Double area;
     private PropertyType type;
+    private String description;
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<Advertisement> advertisements;
+
 
     public Property(
-            String address,
+            Address address,
             Integer rooms,
             Integer bathrooms,
             Integer privateParkingSpace,
@@ -53,11 +59,11 @@ public class Property implements Serializable {
         this.id = id;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -112,6 +118,27 @@ public class Property implements Serializable {
     public PropertyType getType() {
         return type;
     }
+
+    public void setType(PropertyType type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Advertisement> getAdvertisements() {
+        return this.advertisements;
+    }
+
+    public void setAdvertisements(List<Advertisement> advertisements) {
+        this.advertisements = advertisements;
+    }
+
 
     @Override
     public boolean equals(Object o) {
