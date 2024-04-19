@@ -41,4 +41,6 @@ public class PropertyController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(createdProperty.getId()).toUri();
         return ResponseEntity.created(uri).body(newProperty);
     }
+
+
 }
