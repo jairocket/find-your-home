@@ -1,6 +1,7 @@
 package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreatePropertyDTO;
+import com.wyden.findyourhome.dto.UpdatePropertyDTO;
 import com.wyden.findyourhome.entities.Property;
 import com.wyden.findyourhome.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,20 @@ public class PropertyController {
         Property createdProperty = service.create(newProperty);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(createdProperty.getId()).toUri();
         return ResponseEntity.created(uri).body(newProperty);
+    }
+
+    @PutMapping
+    public ResponseEntity<Property> update(@RequestBody UpdatePropertyDTO updatePropertyDTO) {
+        Property updatedProperty = service.update(updatePropertyDTO);
+        return ResponseEntity.ok().body(updatedProperty);
+
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Property> findByIf(@PathVariable Long id) {
+        Property property = service.findById(id);
+
+        return ResponseEntity.ok().body(property);
     }
 
 
