@@ -20,5 +20,5 @@ docker-compose down
 ```
 ### Execute a aplicação
 ```
-mvn spring-boot:run
+mvn spring-boot:run 
 ```
