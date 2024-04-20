@@ -1,12 +1,13 @@
 package com.wyden.findyourhome.entities;
 import jakarta.persistence.*;
 import java.util.List;
+import java.io.Serializable;
 
 import com.wyden.findyourhome.entities.enums.KindPerson;
 
 @Entity
-@Table(name = "PERSON")
-public class Person {
+@Table(name = "Costumer")
+public class Costumer implements Serializable{
 
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +25,17 @@ public class Person {
      @Column(name = "kind_person")
      private KindPerson kindPerson;
 
-     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
      private List<Telephone> telephones;
 
-     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
      private List<Advertisement> advertisements;
 
-     @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
      private List<FavoriteAds> favoriteAdvertisements;
 
 
-     public Person(
+     public Costumer(
           int id, 
           String name, 
           String email, 
@@ -57,7 +58,7 @@ public class Person {
      }
 
 
-     public Person() {
+     public Costumer() {
      }
 
 

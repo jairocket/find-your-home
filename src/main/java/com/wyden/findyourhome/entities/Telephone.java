@@ -1,9 +1,10 @@
 package com.wyden.findyourhome.entities;
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TELEPHONE")
-public class Telephone {
+public class Telephone implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,20 +18,20 @@ public class Telephone {
     private boolean mainNumber;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "costumer_id")
+    private Costumer costumer;
 
 
     public Telephone(
         int id, 
         String number, 
         boolean mainNumber, 
-        Person person
+        Costumer costumer
     ) {
         this.id = id;
         this.number = number;
         this.mainNumber = mainNumber;
-        this.person = person;
+        this.costumer = costumer;
     }
 
 
@@ -66,12 +67,12 @@ public class Telephone {
         this.mainNumber = mainNumber;
     }
 
-    public Person getPerson() {
-        return this.person;
+    public Costumer getCostumer() {
+        return this.costumer;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setCostumer(Costumer costumer) {
+        this.costumer = costumer;
     }
 
 

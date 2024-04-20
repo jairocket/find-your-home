@@ -5,10 +5,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "ADVERTISEMENT")
-public class Advertisement {
+public class Advertisement implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,8 +17,8 @@ public class Advertisement {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "costumer_id")
+    private Costumer costumer;
 
     @ManyToOne
     @JoinColumn(name = "property_id")
@@ -45,7 +46,7 @@ public class Advertisement {
 
     public Advertisement(
         int id, 
-        Person person, 
+        Costumer costumer, 
         Property property, 
         LocalDateTime postDate, 
         BigDecimal value, 
@@ -55,7 +56,7 @@ public class Advertisement {
         List<FavoriteAds> favoriteAds
     ) {
         this.id = id;
-        this.person = person;
+        this.costumer = costumer;
         this.property = property;
         this.postDate = postDate;
         this.value = value;
@@ -78,12 +79,12 @@ public class Advertisement {
         this.id = id;
     }
 
-    public Person getPerson() {
-        return this.person;
+    public Costumer getCostumer() {
+        return this.costumer;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setCostumer(Costumer costumer) {
+        this.costumer = costumer;
     }
 
     public Property getProperty() {

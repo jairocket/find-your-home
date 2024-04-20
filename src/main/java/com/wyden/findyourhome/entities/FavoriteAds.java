@@ -1,14 +1,20 @@
 package com.wyden.findyourhome.entities;
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "FAVORITE_ADS")
-public class FavoriteAds {
+public class FavoriteAds implements Serializable{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
     
     @Id
     @ManyToOne
-    @JoinColumn(name = "person_id")
-    private Person person;
+    @JoinColumn(name = "costumer_id")
+    private Costumer costumer;
 
     @Id
     @ManyToOne
@@ -17,10 +23,10 @@ public class FavoriteAds {
 
 
     public FavoriteAds(
-        Person person, 
+        Costumer costumer, 
         Advertisement advertisement
     ) {
-        this.person = person;
+        this.costumer = costumer;
         this.advertisement = advertisement;
     }
 
@@ -29,12 +35,12 @@ public class FavoriteAds {
     }
 
 
-    public Person getPerson() {
-        return this.person;
+    public Costumer getCostumer() {
+        return this.costumer;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setCostumer(Costumer costumer) {
+        this.costumer = costumer;
     }
 
     public Advertisement getAdvertisement() {
