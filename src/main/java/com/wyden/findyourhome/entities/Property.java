@@ -23,7 +23,6 @@ public class Property implements Serializable {
     private Double fee;
     private Double area;
     private PropertyType type;
-    private String description;
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
@@ -117,18 +116,6 @@ public class Property implements Serializable {
 
     public PropertyType getType() {
         return type;
-    }
-
-    public void setType(PropertyType type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public List<Advertisement> getAdvertisements() {

@@ -40,6 +40,8 @@ public class Advertisement implements Serializable{
     @Column(name = "deleted")
     private Boolean deleted;
 
+    private String description;
+
     @OneToMany(mappedBy = "advertisement", cascade = CascadeType.ALL)
     private List<FavoriteAds> favoriteAds;
 
@@ -146,5 +148,14 @@ public class Advertisement implements Serializable{
     public void setFavoriteAds(List<FavoriteAds> favoriteAds) {
         this.favoriteAds = favoriteAds;
     }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
 }
