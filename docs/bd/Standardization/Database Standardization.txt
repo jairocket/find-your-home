@@ -1,0 +1,12 @@
+Padronização de Banco de Dados
+
+Introdução:
+A padronização de banco de dados desempenha um papel crucial na consistência, legibilidade e manutenção eficiente dos sistemas de informação. Este documento propõe uma abordagem de padronização para os nomes das tabelas, utilizando um prefixo composto pelas duas primeiras e duas últimas letras do nome da tabela, seguido pelo tipo de dado representado pela tabela.
+
+Diretrizes:
+
+Use Snake Case: Os nomes das tabelas devem estar em snake_case, ou seja, as palavras são separadas por underscores (_) e todas as letras são minúsculas, garantindo a legibilidade dos nomes das tabelas.
+
+Exemplo:
+
+nome_composto
