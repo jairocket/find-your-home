@@ -31,7 +31,6 @@ public class PropertyService {
     public Property update(UpdatePropertyDTO newProperty) {
         Property property = repository.findById(newProperty.getId()).orElseThrow(() -> new ResourceNotFoundException("Não foi possível atualizar este recurso. Recurso não encontrado."));
 
-        property.setAddress(newProperty.getAddress());
         property.setArea(newProperty.getArea());
         property.setBathrooms(newProperty.getBathrooms());
         property.setFee(newProperty.getFee());

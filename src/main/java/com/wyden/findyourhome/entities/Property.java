@@ -1,5 +1,6 @@
 package com.wyden.findyourhome.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wyden.findyourhome.entities.enums.PropertyType;
 import jakarta.persistence.*;
 
@@ -7,12 +8,14 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "property")
+@Table(name = "PROPERTY")
 public class Property implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String address;
+    @OneToOne
+    @MapsId
+    private Address address;
     private Integer rooms;
     private Integer bathrooms;
     @Column(name = "private_parking_space")
@@ -23,7 +26,7 @@ public class Property implements Serializable {
     private PropertyType type;
 
     public Property(
-            String address,
+            Address address,
             Integer rooms,
             Integer bathrooms,
             Integer privateParkingSpace,
@@ -49,15 +52,12 @@ public class Property implements Serializable {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
