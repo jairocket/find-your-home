@@ -2,6 +2,7 @@ package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreatePropertyDTO;
 import com.wyden.findyourhome.dto.UpdatePropertyDTO;
+import com.wyden.findyourhome.entities.Address;
 import com.wyden.findyourhome.entities.Property;
 import com.wyden.findyourhome.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,17 @@ public class PropertyController {
 
     @PostMapping
     public ResponseEntity<Property> create(@RequestBody CreatePropertyDTO propertyDTO ) {
+        Address address = new Address(
+                null,
+                propertyDTO.getStreet(),
+                propertyDTO.getState(),
+                propertyDTO.getZipCode(),
+                propertyDTO.getNeighborhood(),
+                propertyDTO.getCity()
+        );
+
         Property newProperty = new Property(
-                propertyDTO.getAddress(),
+                address,
                 propertyDTO.getRooms(),
                 propertyDTO.getBathrooms(),
                 propertyDTO.getPrivateParkingSpace(),
@@ -40,6 +50,7 @@ public class PropertyController {
 
         Property createdProperty = service.create(newProperty);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(createdProperty.getId()).toUri();
+
         return ResponseEntity.created(uri).body(newProperty);
     }
 
@@ -51,7 +62,7 @@ public class PropertyController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Property> findByIf(@PathVariable Long id) {
+    public ResponseEntity<Property> findById(@PathVariable Long id) {
         Property property = service.findById(id);
 
         return ResponseEntity.ok().body(property);

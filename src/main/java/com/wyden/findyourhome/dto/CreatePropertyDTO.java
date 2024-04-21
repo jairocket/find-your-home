@@ -3,7 +3,11 @@ package com.wyden.findyourhome.dto;
 import com.wyden.findyourhome.entities.enums.PropertyType;
 
 public class CreatePropertyDTO {
-    private String address;
+    private String street;
+    private String state;
+    private String zipCode;
+    private String neighborhood;
+    private String city;
     private Integer rooms;
     private Integer bathrooms;
     private Integer privateParkingSpace;
@@ -12,8 +16,25 @@ public class CreatePropertyDTO {
     private Double area;
     private PropertyType type;
 
-    public CreatePropertyDTO(String address, Integer rooms, Integer bathrooms, Integer privateParkingSpace, Double taxes, Double fee, Double area, PropertyType type) {
-        this.address = address;
+    public CreatePropertyDTO(
+            String street,
+            String state,
+            String zipCode,
+            String neighborhood,
+            String city,
+            Integer rooms,
+            Integer bathrooms,
+            Integer privateParkingSpace,
+            Double taxes,
+            Double fee,
+            Double area,
+            PropertyType type
+    ) {
+        this.street = street;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.neighborhood = neighborhood;
+        this.city = city;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
         this.privateParkingSpace = privateParkingSpace;
@@ -23,8 +44,24 @@ public class CreatePropertyDTO {
         this.type = type;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreet() {
+        return street;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public String getNeighborhood() {
+        return neighborhood;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public Integer getRooms() {
