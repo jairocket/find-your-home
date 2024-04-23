@@ -25,7 +25,6 @@ public class Address implements Serializable {
     private String neighborhood;
     private String city;
 
-
     public Address(
             Property property,
             String street,

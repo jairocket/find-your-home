@@ -5,6 +5,7 @@ import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.repositories.PropertyRepository;
 import com.wyden.findyourhome.entities.Property;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,6 +40,12 @@ public class PropertyService {
         property.setTaxes(newProperty.getTaxes());
 
         return repository.save(property);
+
+    }
+
+    public void delete(Long id) {
+
+        repository.deleteById(id);
 
     }
 }
