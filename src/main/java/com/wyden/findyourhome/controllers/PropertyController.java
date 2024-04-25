@@ -1,6 +1,7 @@
 package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreatePropertyDTO;
+import com.wyden.findyourhome.dto.UpdateAddressDTO;
 import com.wyden.findyourhome.dto.UpdatePropertyDTO;
 import com.wyden.findyourhome.entities.Address;
 import com.wyden.findyourhome.entities.Property;
@@ -57,6 +58,13 @@ public class PropertyController {
     @PutMapping
     public ResponseEntity<Property> update(@RequestBody UpdatePropertyDTO updatePropertyDTO) {
         Property updatedProperty = service.update(updatePropertyDTO);
+        return ResponseEntity.ok().body(updatedProperty);
+
+    }
+
+    @PutMapping(value = "/address/{id}")
+    public ResponseEntity<Property> updateAddress(@RequestBody UpdateAddressDTO updateAddressDTO, @PathVariable Long id) {
+        Property updatedProperty = service.updateAddress(updateAddressDTO, id);
         return ResponseEntity.ok().body(updatedProperty);
 
     }
