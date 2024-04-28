@@ -30,15 +30,14 @@ public class PropertyService {
     }
 
     public Property update(UpdatePropertyDTO newProperty) {
-        Property property = repository.findById(newProperty.id()).orElseThrow(() -> new ResourceNotFoundException("Não foi possível atualizar este recurso. Recurso não encontrado."));
+        Property property = repository.findById(newProperty.getId()).orElseThrow(() -> new ResourceNotFoundException("Não foi possível atualizar este recurso. Recurso não encontrado."));
 
-        property.setArea(newProperty.area());
-        property.setRooms(newProperty.rooms());
-        property.setBathrooms(newProperty.bathrooms());
-        property.setFee(newProperty.fee());
-        property.setPrivateParkingSpace(newProperty.privateParkingSpace());
-        property.setTaxes(newProperty.taxes());
-        property.setTaxes(newProperty.taxes());
+        property.setArea(newProperty.getArea());
+        property.setRooms(newProperty.getRooms());
+        property.setBathrooms(newProperty.getBathrooms());
+        property.setFee(newProperty.getFee());
+        property.setPrivateParkingSpace(newProperty.getPrivateParkingSpace());
+        property.setTaxes(newProperty.getTaxes());
 
         return repository.save(property);
     }
@@ -56,8 +55,6 @@ public class PropertyService {
     }
 
     public void delete(Long id) {
-
         repository.deleteById(id);
-
     }
 }
