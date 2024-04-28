@@ -52,7 +52,6 @@ public class Property implements Serializable {
         return id;
     }
 
-
     public Address getAddress() {
         return address;
     }
