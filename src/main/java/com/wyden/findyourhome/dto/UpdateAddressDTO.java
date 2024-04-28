@@ -7,7 +7,13 @@ public class UpdateAddressDTO {
     private String neighborhood;
     private String city;
 
-    public UpdateAddressDTO(String street, String state, String zipCode, String neighborhood, String city) {
+    public UpdateAddressDTO(
+            String street,
+            String state,
+            String zipCode,
+            String neighborhood,
+            String city
+    ) {
         this.street = street;
         this.state = state;
         this.zipCode = zipCode;

@@ -11,8 +11,15 @@ public final class UpdatePropertyDTO {
     private final Double fee;
     private final Double area;
 
-    public UpdatePropertyDTO(Long id, Integer rooms, Integer bathrooms, Integer privateParkingSpace, Double taxes,
-                             Double fee, Double area) {
+    public UpdatePropertyDTO(
+            Long id,
+            Integer rooms,
+            Integer bathrooms,
+            Integer privateParkingSpace,
+            Double taxes,
+            Double fee,
+            Double area
+    ) {
         this.id = id;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
