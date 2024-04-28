@@ -43,10 +43,6 @@ public class Telephone implements Serializable{
         return this.id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getNumber() {
         return this.number;
     }
