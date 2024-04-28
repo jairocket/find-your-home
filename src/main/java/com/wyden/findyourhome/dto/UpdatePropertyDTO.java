@@ -29,31 +29,31 @@ public final class UpdatePropertyDTO {
         this.area = area;
     }
 
-    public Long id() {
+    public Long getId() {
         return id;
     }
 
-    public Integer rooms() {
+    public Integer getRooms() {
         return rooms;
     }
 
-    public Integer bathrooms() {
+    public Integer getBathrooms() {
         return bathrooms;
     }
 
-    public Integer privateParkingSpace() {
+    public Integer getPrivateParkingSpace() {
         return privateParkingSpace;
     }
 
-    public Double taxes() {
+    public Double getTaxes() {
         return taxes;
     }
 
-    public Double fee() {
+    public Double getFee() {
         return fee;
     }
 
-    public Double area() {
+    public Double getArea() {
         return area;
     }
 
