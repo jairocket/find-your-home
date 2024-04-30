@@ -1,18 +1,23 @@
 package com.wyden.findyourhome.entities;
+
 import jakarta.persistence.*;
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TELEPHONE")
-public class Telephone implements Serializable{
+public class Telephone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "custumer_id")
+    @JoinColumn(name = "customer_id")
+    @PrimaryKeyJoinColumn
+    @JsonIgnore
     private Customer customer;
 
     @Column(name = "number")
@@ -21,25 +26,20 @@ public class Telephone implements Serializable{
     @Column(name = "main_number")
     private boolean mainNumber;
 
-
     public Telephone(
-        int id, 
-        String number, 
-        boolean mainNumber, 
-        Customer customer
+        Customer customer,
+        String number,
+        boolean mainNumber
     ) {
-        this.id = id;
+        this.customer = customer;
         this.number = number;
         this.mainNumber = mainNumber;
-        this.customer = customer;
     }
-
 
     public Telephone() {
     }
 
-
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
@@ -49,10 +49,6 @@ public class Telephone implements Serializable{
 
     public void setNumber(String number) {
         this.number = number;
-    }
-
-    public boolean isMainNumber() {
-        return this.mainNumber;
     }
 
     public boolean getMainNumber() {
@@ -70,6 +66,5 @@ public class Telephone implements Serializable{
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
-
 
 }
