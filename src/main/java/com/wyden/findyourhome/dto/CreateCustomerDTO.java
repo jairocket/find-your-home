@@ -54,8 +54,4 @@ public class CreateCustomerDTO {
     public List<CreateTelephoneDTO> getTelephones() {
         return telephones;
     }
-
-    public void setTelephones(List<CreateTelephoneDTO> telephones) {
-        this.telephones = telephones;
-    }
 }

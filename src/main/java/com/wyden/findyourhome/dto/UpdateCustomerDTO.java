@@ -1,5 +1,4 @@
 package com.wyden.findyourhome.dto;
-import java.util.Objects;
 
 
 public class UpdateCustomerDTO {
@@ -43,32 +42,4 @@ public class UpdateCustomerDTO {
     public String getCnpj() {
         return cnpj;
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (UpdateCustomerDTO) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.name, that.name) &&
-                Objects.equals(this.email, that.email) &&
-                Objects.equals(this.cpf, that.cpf) &&
-                Objects.equals(this.cnpj, that.cnpj);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, email, cpf, cnpj);
-    }
-
-    @Override
-    public String toString() {
-        return "UpdateCustomerDTO[" +
-                "id=" + id + ", " +
-                "name=" + name + ", " +
-                "email=" + email + ", " +
-                "cpf=" + cpf + ", " +
-                "cnpj=" + cnpj + "]" ;
-    }
-
 }

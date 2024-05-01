@@ -5,11 +5,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.*;
 import com.wyden.findyourhome.services.CustomerService;
+//import com.wyden.findyourhome.config.RegexPatterns;
 import com.wyden.findyourhome.dto.CreateCustomerDTO;
 import com.wyden.findyourhome.dto.UpdateCustomerDTO;
 import com.wyden.findyourhome.entities.Customer;
+import com.wyden.findyourhome.exceptions.CustomerException;
+
 import java.util.List;
-import com.wyden.findyourhome.utils.*;
 import java.net.URI;
 
 @RestController
@@ -29,18 +31,17 @@ public class CustomerController {
     public ResponseEntity<Object> createCustomer(@RequestBody CreateCustomerDTO createCustomerDTO) {
         if (createCustomerDTO.getCpf() == null && createCustomerDTO.getCnpj() == null
                 || (createCustomerDTO.getCpf() != null && createCustomerDTO.getCnpj() != null)) {
-            return ResponseEntity.badRequest().body("Must provide either CPF or CNPJ, and only one of them");
+            throw new CustomerException("Must provide either CPF or CNPJ, and only one of them");
         }
-        if (createCustomerDTO.getCpf() != null) {
-            if (!validations.isValidCpf(createCustomerDTO.getCpf())) {
-                return ResponseEntity.badRequest().body("Invalid CPF");
-            }
-        } else {
-            if (!validations.isValidCnpj(createCustomerDTO.getCnpj())) {
-                return ResponseEntity.badRequest().body("Invalid CNPJ");
-            }
-
-        }
+        //if (createCustomerDTO.getCpf() != null) {
+        //    if (!createCustomerDTO.getCpf().matches(RegexPatterns.cpf)) {
+        //        return ResponseEntity.badRequest().body("Invalid CPF");
+        //    }
+        //} else {
+        //    if (!createCustomerDTO.getCnpj().matches(RegexPatterns.cnpj)) {
+        //        return ResponseEntity.badRequest().body("Invalid CNPJ");
+        //    }
+        //}
 
         Customer newCustomer = new Customer(
                 createCustomerDTO.getName(),
