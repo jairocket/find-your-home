@@ -43,4 +43,6 @@ public class IndividualCostumer extends AbstractCostumer {
         return CPF;
     }
 
+    private void validateCPF() {}
+
 }

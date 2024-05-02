@@ -31,4 +31,8 @@ public class CorporateCostumer extends AbstractCostumer {
         return CNPJ;
     }
 
+    private void validateCNPJ(String CNPJ) {
+
+    }
+
 }
