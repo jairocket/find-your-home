@@ -6,18 +6,15 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Custumer")
+@Table(name = "Customer")
 public class Customer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
-
+    private Long id;
     private String name;
     private String email;
-    private String phone;
-
     private String cpf;
     private String cnpj;
 
@@ -28,31 +25,28 @@ public class Customer implements Serializable {
     private List<Advertisement> advertisements;
 
     public Customer(
-          Integer id, 
-          String name, 
-          String email, 
-          String phone, 
-          String cpf, 
-          String cnpj, 
-          List<Telephone> telephones, 
-          List<Advertisement> advertisements
-     ){
-          this.id = id;
-          this.name = name;
-          this.email = email;
-          this.phone = phone;
-          this.cpf = cpf;
-          this.telephones = telephones;
-          this.advertisements = advertisements;
-     }
+        String name,
+        String email,
+        String cpf,
+        String cnpj,
+        List<Telephone> telephones,
+        List<Advertisement> advertisements
+    ) {
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.cnpj = cnpj;
+        this.telephones = telephones;
+        this.advertisements = advertisements;
+    }
 
     public Customer() {
     }
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
-    
+
     public String getName() {
         return this.name;
     }
@@ -68,15 +62,6 @@ public class Customer implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPhone() {
-        return this.phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
 
     public List<Telephone> getTelephones() {
         return this.telephones;
@@ -112,8 +97,10 @@ public class Customer implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Customer customer = (Customer) o;
         return Objects.equals(getId(), customer.getId());
     }
