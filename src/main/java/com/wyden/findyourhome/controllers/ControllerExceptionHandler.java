@@ -1,6 +1,5 @@
 package com.wyden.findyourhome.controllers;
 
-import com.wyden.findyourhome.exceptions.CustomerException;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.exceptions.StandardError;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,20 +13,6 @@ public class ControllerExceptionHandler extends RuntimeException {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<StandardError> handleException(ResourceNotFoundException exception, HttpServletRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
-
-        StandardError error = new StandardError(
-                status.value(),
-                System.currentTimeMillis(),
-                exception.getMessage(),
-                request.getRequestURI()
-        );
-
-        return ResponseEntity.status(status).body(error);
-    }
-
-    @ExceptionHandler(CustomerException.class)
-    public ResponseEntity<StandardError> costumerException(CustomerException exception, HttpServletRequest request) {
-        HttpStatus status = HttpStatus.BAD_REQUEST;
 
         StandardError error = new StandardError(
                 status.value(),

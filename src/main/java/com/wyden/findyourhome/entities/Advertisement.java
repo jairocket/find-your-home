@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "ADVERTISEMENT")
-public class Advertisement implements Serializable {
+public class Advertisement implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,8 @@ public class Advertisement implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private AbstractCostumer customer;
+    private Customer customer;
+
 
     private AdvertisementStatus status;
 }
