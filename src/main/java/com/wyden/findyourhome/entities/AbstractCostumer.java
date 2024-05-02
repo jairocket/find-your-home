@@ -3,23 +3,46 @@ package com.wyden.findyourhome.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-@MappedSuperclass
-public class AbstractCostumer implements Serializable {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class AbstractCostumer implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private String email;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Telephone> telephones = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Advertisement> advertisements = new ArrayList<>();
 
     public AbstractCostumer(
             Long id,
             String name,
-            String email
+            String email,
+            List<Telephone> telephones,
+            List<Advertisement> advertisements
     ) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.telephones = telephones;
+        this.advertisements = advertisements;
+    }
+
+    public AbstractCostumer(
+            String name,
+            String email,
+            List<Telephone> telephones,
+            List<Advertisement> advertisements
+    ) {
+        this.name = name;
+        this.email = email;
+        this.telephones = telephones;
+        this.advertisements = advertisements;
     }
 
     public AbstractCostumer() {

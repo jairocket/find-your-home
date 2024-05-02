@@ -18,7 +18,7 @@ public class Telephone implements Serializable {
     @JoinColumn(name = "customer_id")
     @PrimaryKeyJoinColumn
     @JsonIgnore
-    private Customer customer;
+    private AbstractCostumer customer;
 
     @Column(name = "number")
     private String number;
@@ -27,7 +27,7 @@ public class Telephone implements Serializable {
     private boolean mainNumber;
 
     public Telephone(
-        Customer customer,
+        AbstractCostumer customer,
         String number,
         boolean mainNumber
     ) {
@@ -59,11 +59,11 @@ public class Telephone implements Serializable {
         this.mainNumber = mainNumber;
     }
 
-    public Customer getCustomer() {
+    public AbstractCostumer getCustomer() {
         return this.customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(AbstractCostumer customer) {
         this.customer = customer;
     }
 

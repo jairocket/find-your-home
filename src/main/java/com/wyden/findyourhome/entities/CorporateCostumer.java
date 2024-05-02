@@ -1,16 +1,14 @@
 package com.wyden.findyourhome.entities;
 
+import com.wyden.findyourhome.exceptions.CustomerException;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@Entity(name = "CORPORATE_CUSTOMERS")
+@Entity(name = "CORPORATE_CUSTOMER")
 public class CorporateCostumer extends AbstractCostumer {
     private String CNPJ;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Telephone> telephones;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Advertisement> advertisements;
 
     public CorporateCostumer (
             Long id,
@@ -20,10 +18,9 @@ public class CorporateCostumer extends AbstractCostumer {
             List<Advertisement> advertisements,
             String CNPJ
     ) {
-        super(id, name, email);
+        super(id, name, email, telephones, advertisements);
+        CNPJ = Optional.ofNullable(CNPJ).orElseThrow(() -> new CustomerException("CNPJ must be informed"));
         this.CNPJ = CNPJ;
-        this.telephones = telephones;
-        this.advertisements = advertisements;
     }
 
     public CorporateCostumer() {
@@ -32,22 +29,6 @@ public class CorporateCostumer extends AbstractCostumer {
 
     public String getCNPJ() {
         return CNPJ;
-    }
-
-    public List<Telephone> getTelephones() {
-        return telephones;
-    }
-
-    public void setTelephones(List<Telephone> telephones) {
-        this.telephones = telephones;
-    }
-
-    public List<Advertisement> getAdvertisements() {
-        return advertisements;
-    }
-
-    public void setAdvertisements(List<Advertisement> advertisements) {
-        this.advertisements = advertisements;
     }
 
 }

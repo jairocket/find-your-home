@@ -1,9 +1,9 @@
 package com.wyden.findyourhome.services;
 
-import com.wyden.findyourhome.repositories.CustomerRepository;
-import com.wyden.findyourhome.entities.Customer;
+import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.dto.UpdateCustomerDTO;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
+import com.wyden.findyourhome.repositories.IndividualCostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,26 +11,24 @@ import java.util.List;
 
 
 @Service
-public class CustomerService {
+public class IndividualCustomerService {
     @Autowired
-    private CustomerRepository repository;
+    private IndividualCostumerRepository repository;
 
-    public List<Customer> findAll() {
+    public List<IndividualCostumer> findAll() {
         return repository.findAll();
     }
 
-    public Customer create(Customer newCustomer) {
+    public IndividualCostumer create(IndividualCostumer newCustomer) {
         return repository.save(newCustomer);
     }
 
-    public Customer update(UpdateCustomerDTO newCustomer) {
-        Customer customer = repository.findById(newCustomer.getId()).orElseThrow(() -> new ResourceNotFoundException(
+    public IndividualCostumer update(UpdateCustomerDTO newCustomer) {
+        IndividualCostumer customer = repository.findById(newCustomer.getId()).orElseThrow(() -> new ResourceNotFoundException(
                 "Não foi possível atualizar este recurso. Recurso não encontrado."));
 
         customer.setName(newCustomer.getName());
         customer.setEmail(newCustomer.getEmail());
-        customer.setCpf(newCustomer.getCpf());
-        customer.setCnpj(newCustomer.getCnpj());
 
         return repository.save(customer);
     }

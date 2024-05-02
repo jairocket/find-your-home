@@ -1,18 +1,16 @@
 package com.wyden.findyourhome.entities;
 
+import com.wyden.findyourhome.exceptions.CustomerException;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.util.List;
+import java.util.Optional;
 
-@Entity(name = "INDIVIDUAL_CUSTOMERS")
+@Entity(name = "INDIVIDUAL_CUSTOMER")
 public class IndividualCostumer extends AbstractCostumer {
     private String CPF;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Telephone> telephones;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private List<Advertisement> advertisements;
 
     public IndividualCostumer (
             Long id,
@@ -22,10 +20,21 @@ public class IndividualCostumer extends AbstractCostumer {
             List<Advertisement> advertisements,
             String CPF
     ) {
-        super(id, name, email);
+        super(id, name, email, telephones, advertisements);
         this.CPF = CPF;
-        this.telephones = telephones;
-        this.advertisements = advertisements;
+    }
+
+    public IndividualCostumer (
+            String name,
+            String email,
+            String CPF,
+            List<Telephone> telephones,
+            List<Advertisement> advertisements
+
+    ) {
+        super(name, email, telephones, advertisements);
+        CPF = Optional.ofNullable(CPF).orElseThrow(() -> new CustomerException("CPF must be informed"));
+        this.CPF = CPF;
     }
 
     public IndividualCostumer() {
@@ -36,19 +45,4 @@ public class IndividualCostumer extends AbstractCostumer {
         return CPF;
     }
 
-    public List<Telephone> getTelephones() {
-        return telephones;
-    }
-
-    public void setTelephones(List<Telephone> telephones) {
-        this.telephones = telephones;
-    }
-
-    public List<Advertisement> getAdvertisements() {
-        return advertisements;
-    }
-
-    public void setAdvertisements(List<Advertisement> advertisements) {
-        this.advertisements = advertisements;
-    }
 }
