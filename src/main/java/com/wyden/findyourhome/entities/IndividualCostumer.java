@@ -1,9 +1,7 @@
 package com.wyden.findyourhome.entities;
 
 import com.wyden.findyourhome.exceptions.CustomerException;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 
 import java.util.List;
 import java.util.Optional;
