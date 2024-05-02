@@ -57,35 +57,4 @@ public final class UpdatePropertyDTO {
         return area;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (UpdatePropertyDTO) obj;
-        return Objects.equals(this.id, that.id) &&
-                Objects.equals(this.rooms, that.rooms) &&
-                Objects.equals(this.bathrooms, that.bathrooms) &&
-                Objects.equals(this.privateParkingSpace, that.privateParkingSpace) &&
-                Objects.equals(this.taxes, that.taxes) &&
-                Objects.equals(this.fee, that.fee) &&
-                Objects.equals(this.area, that.area);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, rooms, bathrooms, privateParkingSpace, taxes, fee, area);
-    }
-
-    @Override
-    public String toString() {
-        return "UpdatePropertyDTO[" +
-                "id=" + id + ", " +
-                "rooms=" + rooms + ", " +
-                "bathrooms=" + bathrooms + ", " +
-                "privateParkingSpace=" + privateParkingSpace + ", " +
-                "taxes=" + taxes + ", " +
-                "fee=" + fee + ", " +
-                "area=" + area + ']';
-    }
-
 }
