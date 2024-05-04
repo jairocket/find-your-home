@@ -28,6 +28,19 @@ public class IndividualCostumer extends AbstractCostumer {
         this.advertisements = advertisements;
     }
 
+    public IndividualCostumer (
+            String name,
+            String email,
+            List<Telephone> telephones,
+            List<Advertisement> advertisements,
+            String CPF
+    ) {
+        super(name, email);
+        this.CPF = CPF;
+        this.telephones = telephones;
+        this.advertisements = advertisements;
+    }
+
     public IndividualCostumer() {
         super();
     }
