@@ -1,0 +1,345 @@
+{
+	"info": {
+		"_postman_id": "c7ba4ae3-4706-43b9-8b33-68ec78738148",
+		"name": "find-your-home",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26433822"
+	},
+	"item": [
+		{
+			"name": "Propertie",
+			"item": [
+				{
+					"name": "getAll Properties",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Propertie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"street\": \"Nome da Rua\",\r\n    \"city\": \"Nome da Cidade\",\r\n    \"state\": \"Nome do Estado\",\r\n    \"neighborhood\": \"neighborhood\",\r\n    \"zipCode\": \"CEP\",\r\n  \"rooms\": 3,\r\n  \"bathrooms\": 2,\r\n  \"privateParkingSpace\": 1,\r\n  \"taxes\": 1000.0,\r\n  \"fee\": 500.0,\r\n  \"area\": 150.0,\r\n  \"type\": \"HOUSE\",\r\n   \"description\": \"desc\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Propertie",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"rooms\": 10,\r\n  \"bathrooms\": 2,\r\n  \"privateParkingSpace\": 1,\r\n  \"taxes\": 250.50,\r\n  \"fee\": 100.75,\r\n  \"area\": 150.0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/properties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"properties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Address",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"street\": \"Nome da Rua\",\r\n  \"state\": \"Nome do Estado\",\r\n  \"zipCode\": \"CEP\",\r\n  \"neighborhood\": \"Nome do Bairro\",\r\n  \"city\": \"Nome da Cidade\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/properties/address/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"properties",
+								"address",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Telephone",
+					"item": [
+						{
+							"name": "create telephone",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n      {\r\n        \"customerId\": 1,\r\n        \"number\": \"71982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/individual-customers/telephone",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"individual-customers",
+										"telephone"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update telephone",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n      {\r\n        \"id\": 1,\r\n        \"number\": \"81982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/individual-customers/telephone",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"individual-customers",
+										"telephone"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete telephone",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n      {\r\n        \"customerId\": 1,\r\n        \"number\": \"71982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/individual-customers/telephone/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"individual-customers",
+										"telephone",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getAll Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual-customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual-customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find Customers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual-customers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual-customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Customer",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/individual-customers/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual-customers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nome do Cliente\",\r\n    \"email\": \"cliente@example.com\",\r\n    \"phone\": \"123456789\",\r\n    \"cpf\": \"62978873060\",\r\n    \"cnpj\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/individual-customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual-customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Novo Nome\",\r\n  \"email\": \"novoemail@example.com\",\r\n  \"cpf\": \"79101086057\",\r\n  \"cnpj\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/individual-customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"individual-customers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
