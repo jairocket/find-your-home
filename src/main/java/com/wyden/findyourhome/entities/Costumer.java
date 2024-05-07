@@ -4,16 +4,17 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class AbstractCostumer implements Serializable {
+@Entity(name = "COSTUMERS")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "costumer_type", discriminatorType = DiscriminatorType.INTEGER)
+public class Costumer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
     private String email;
 
-    public AbstractCostumer(
+    public Costumer(
             Long id,
             String name,
             String email
@@ -23,12 +24,12 @@ public class AbstractCostumer implements Serializable {
         this.email = email;
     }
 
-    public AbstractCostumer(String name, String email) {
+    public Costumer(String name, String email) {
         this.name = name;
         this.email = email;
     }
 
-    public AbstractCostumer() {
+    public Costumer() {
     }
 
     public Long getId() {

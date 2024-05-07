@@ -4,8 +4,9 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity(name = "CORPORATE_CUSTOMERS")
-public class CorporateCostumer extends AbstractCostumer {
+@Entity
+@DiscriminatorValue("1")
+public class CorporateCostumer extends Costumer {
     private String CNPJ;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
