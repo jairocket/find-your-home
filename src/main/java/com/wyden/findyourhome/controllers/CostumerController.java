@@ -2,9 +2,11 @@ package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreateIndividualCustomerDTO;
 import com.wyden.findyourhome.dto.CreateTelephoneDTO;
+import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.entities.Telephone;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
+import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.IndividualCostumerService;
 import com.wyden.findyourhome.services.TelephoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,10 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/customers")
-public class IndividualCostumerController {
+public class CostumerController {
+
+    @Autowired
+    private CostumerService costumerService;
 
     @Autowired
     private IndividualCostumerService individualCostumerService;
@@ -73,7 +78,7 @@ public class IndividualCostumerController {
 
     @PostMapping(value = "/telephone")
     public ResponseEntity<Telephone> createTelephone(@RequestBody CreateTelephoneDTO telephone) {
-        IndividualCostumer customer = individualCostumerService.findById(telephone.getCustomerId());
+        Costumer customer = costumerService.findById(telephone.getCustomerId());
         if (customer == null) {
             throw new ResourceNotFoundException(
                 "Não foi possível localizar o cliente.");
