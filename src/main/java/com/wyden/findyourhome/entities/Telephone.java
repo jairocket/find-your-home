@@ -14,10 +14,9 @@ public class Telephone implements Serializable {
     @Column(name = "id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @PrimaryKeyJoinColumn
-    @JsonIgnore
     private Costumer customer;
 
     @Column(name = "number")
@@ -38,6 +37,8 @@ public class Telephone implements Serializable {
 
     public Telephone() {
     }
+
+
 
     public Long getId() {
         return this.id;

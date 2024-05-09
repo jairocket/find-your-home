@@ -33,9 +33,9 @@ public class CostumerController {
     @Autowired
     private TelephoneService telephoneService;
 
-    @GetMapping("/individual")
-    public ResponseEntity<List<IndividualCostumer>> findAll() {
-        List<IndividualCostumer> customers = individualCostumerService.findAll();
+    @GetMapping
+    public ResponseEntity<List<Costumer>> findAll() {
+        List<Costumer> customers = costumerService.findAll();
         return ResponseEntity.ok().body(customers);
     }
 
@@ -45,34 +45,45 @@ public class CostumerController {
         IndividualCostumer newCustomer = new IndividualCostumer(
                 createIndividualCustomerDTO.getName(),
                 createIndividualCustomerDTO.getEmail(),
-                createIndividualCustomerDTO.getTelephones(),
+                null,
                 createIndividualCustomerDTO.getAdvertisements(),
                 createIndividualCustomerDTO.getCpf()
 
         );
 
         IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
+
+        var telephones = createIndividualCustomerDTO
+                .getTelephones()
+                .stream()
+                .map((dto)-> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
+                .toList();
+
+        var phones = telephoneService.saveAll(telephones);
+
+        newCustomer.setTelephones(phones);
+
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(createdCustomer.getId()).toUri();
 
         return ResponseEntity.created(uri).body(newCustomer);
     }
 
-    @PutMapping("/individual")
-    public ResponseEntity<IndividualCostumer> update(@RequestBody UpdateCustomerDTO updateCustomerDTO) {
-        IndividualCostumer updatedCustomer = individualCostumerService.update(updateCustomerDTO);
+    @PutMapping
+    public ResponseEntity<Costumer> update(@RequestBody UpdateCustomerDTO updateCustomerDTO) {
+        Costumer updatedCustomer = costumerService.update(updateCustomerDTO);
         return ResponseEntity.ok().body(updatedCustomer);
     }
 
-    @GetMapping(value = "/individual/{id}")
-    public ResponseEntity<IndividualCostumer> findById(@PathVariable Long id) {
-        IndividualCostumer customer = individualCostumerService.findById(id);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Costumer> findById(@PathVariable Long id) {
+        Costumer customer = costumerService.findById(id);
         return ResponseEntity.ok().body(customer);
     }
 
-    @DeleteMapping(value = "individual/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        individualCostumerService.delete(id);
+        costumerService.delete(id);
         return ResponseEntity.noContent().build();
     }
 

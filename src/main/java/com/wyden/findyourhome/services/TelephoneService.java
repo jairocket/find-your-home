@@ -8,6 +8,8 @@ import com.wyden.findyourhome.entities.Telephone;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.repositories.TelephoneRepository;
 
+import java.util.List;
+
 
 @Service
 public class TelephoneService {
@@ -18,6 +20,8 @@ public class TelephoneService {
     public Telephone create(Telephone newTelephone) {
         return repository.save(newTelephone);
     }
+
+    public List<Telephone> saveAll(List<Telephone> telephones) {return repository.saveAll(telephones);}
 
     public Telephone update(UpdateTelephoneDTO newTelephone) {
         Telephone telephone = repository.findById(newTelephone.getId()).orElseThrow(() -> new ResourceNotFoundException(
