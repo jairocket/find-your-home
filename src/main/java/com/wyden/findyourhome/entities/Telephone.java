@@ -15,7 +15,7 @@ public class Telephone implements Serializable {
     private Long id;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Costumer customer;
 
