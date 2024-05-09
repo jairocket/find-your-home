@@ -1,13 +1,15 @@
 package com.wyden.findyourhome.entities;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.util.List;
 
-@Entity(name = "INDIVIDUAL_CUSTOMERS")
-public class IndividualCostumer extends AbstractCostumer {
+@Entity
+@DiscriminatorValue("2")
+public class IndividualCostumer extends Costumer {
     private String CPF;
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
