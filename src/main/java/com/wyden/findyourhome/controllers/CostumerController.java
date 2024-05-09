@@ -2,9 +2,11 @@ package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreateIndividualCustomerDTO;
 import com.wyden.findyourhome.dto.CreateTelephoneDTO;
+import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.entities.Telephone;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
+import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.IndividualCostumerService;
 import com.wyden.findyourhome.services.TelephoneService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,26 @@ import java.util.List;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/individual-customers")
-public class IndividualCostumerController {
+@RequestMapping(value = "/customers")
+public class CostumerController {
 
     @Autowired
-    private IndividualCostumerService service;
+    private CostumerService costumerService;
+
+    @Autowired
+    private IndividualCostumerService individualCostumerService;
 
     @Autowired
     private TelephoneService telephoneService;
 
-    @GetMapping
+    @GetMapping("/individual")
     public ResponseEntity<List<IndividualCostumer>> findAll() {
-        List<IndividualCostumer> customers = service.findAll();
+        List<IndividualCostumer> customers = individualCostumerService.findAll();
         return ResponseEntity.ok().body(customers);
     }
 
-    @PostMapping
-    public ResponseEntity<Object> createCustomer(@RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
+    @PostMapping("/individual")
+    public ResponseEntity<IndividualCostumer> createCustomer(@RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
 
         IndividualCostumer newCustomer = new IndividualCostumer(
                 createIndividualCustomerDTO.getName(),
@@ -46,34 +51,34 @@ public class IndividualCostumerController {
 
         );
 
-        IndividualCostumer createdCustomer = service.create(newCustomer);
+        IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(createdCustomer.getId()).toUri();
 
         return ResponseEntity.created(uri).body(newCustomer);
     }
 
-    @PutMapping
-    public ResponseEntity<Object> update(@RequestBody UpdateCustomerDTO updateCustomerDTO) {
-        IndividualCostumer updatedCustomer = service.update(updateCustomerDTO);
+    @PutMapping("/individual")
+    public ResponseEntity<IndividualCostumer> update(@RequestBody UpdateCustomerDTO updateCustomerDTO) {
+        IndividualCostumer updatedCustomer = individualCostumerService.update(updateCustomerDTO);
         return ResponseEntity.ok().body(updatedCustomer);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Object> findById(@PathVariable Long id) {
-        IndividualCostumer customer = service.findById(id);
+    @GetMapping(value = "/individual/{id}")
+    public ResponseEntity<IndividualCostumer> findById(@PathVariable Long id) {
+        IndividualCostumer customer = individualCostumerService.findById(id);
         return ResponseEntity.ok().body(customer);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "individual/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        service.delete(id);
+        individualCostumerService.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping(value = "/telephone")
     public ResponseEntity<Telephone> createTelephone(@RequestBody CreateTelephoneDTO telephone) {
-        IndividualCostumer customer = service.findById(telephone.getCustomerId());
+        Costumer customer = costumerService.findById(telephone.getCustomerId());
         if (customer == null) {
             throw new ResourceNotFoundException(
                 "Não foi possível localizar o cliente.");
