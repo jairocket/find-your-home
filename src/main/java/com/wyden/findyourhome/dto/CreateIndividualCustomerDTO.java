@@ -11,13 +11,13 @@ public class CreateIndividualCustomerDTO {
     private String email;
     private String cpf;
     private List<Advertisement> advertisements = new ArrayList<>();
-    private List<Telephone> telephones = new ArrayList<>();
+    private List<CreateTelephoneDTO> telephones = new ArrayList<>();
 
     public CreateIndividualCustomerDTO(
             String name,
             String email,
             String cpf,
-            List<Telephone> telephones
+            List<CreateTelephoneDTO> telephones
     ) {
         this.name = name;
         this.email = email;
@@ -37,7 +37,7 @@ public class CreateIndividualCustomerDTO {
         return cpf;
     }
 
-    public List<Telephone> getTelephones() {
+    public List<CreateTelephoneDTO> getTelephones() {
         return telephones;
     }
 
