@@ -5,7 +5,8 @@ import com.wyden.findyourhome.dto.CreateTelephoneDTO;
 import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.entities.Telephone;
-import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
+import com.wyden.findyourhome.exceptions.*;
+import com.wyden.findyourhome.exceptions.TelephoneException.*;
 import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.IndividualCostumerService;
 import com.wyden.findyourhome.services.TelephoneService;
@@ -15,7 +16,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.*;
 import com.wyden.findyourhome.dto.UpdateCustomerDTO;
 import com.wyden.findyourhome.dto.UpdateTelephoneDTO;
-
 
 import java.util.List;
 import java.net.URI;
@@ -40,7 +40,22 @@ public class CostumerController {
     }
 
     @PostMapping("/individual")
-    public ResponseEntity<IndividualCostumer> createCustomer(@RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
+    public ResponseEntity<IndividualCostumer> createCustomer(
+            @RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
+
+        var telephones = createIndividualCustomerDTO
+                .getTelephones()
+                .stream()
+                .map((dto) -> new Telephone(null, dto.getNumber(), dto.getMainNumber()))
+                .toList();
+
+        if (telephones.stream().anyMatch(t -> t.hasDuplicateNumber(telephones))) {
+            throw new DuplicatePhoneNumberException("Erro: Números duplicados encontrados.");
+        }
+
+        if (telephones.stream().filter(Telephone::getMainNumber).count() > 1) {
+            throw new MultipleMainNumbersException("Erro: Mais de um número principal encontrado.");
+        }
 
         IndividualCostumer newCustomer = new IndividualCostumer(
                 createIndividualCustomerDTO.getName(),
@@ -53,11 +68,7 @@ public class CostumerController {
 
         IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
 
-        var telephones = createIndividualCustomerDTO
-                .getTelephones()
-                .stream()
-                .map((dto)-> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
-                .toList();
+        telephones.forEach(phone -> phone.setCustomer(createdCustomer));
 
         var phones = telephoneService.saveAll(telephones);
 
@@ -92,7 +103,14 @@ public class CostumerController {
         Costumer customer = costumerService.findById(telephone.getCustomerId());
         if (customer == null) {
             throw new ResourceNotFoundException(
-                "Não foi possível localizar o cliente.");
+                    "Não foi possível localizar o cliente.");
+        }
+
+        if (telephoneService.findTelephoneByNumberAndCustomerId(telephone.getNumber(), telephone.getCustomerId()) != null) {
+            throw new PhoneNumberAlreadyExistsException("Erro: Número de telefone já existe para este cliente.");
+        }
+        if (telephoneService.findMainNumberByCustomerId(customer.getId()) != null && telephone.getMainNumber() == true) {
+            throw new MultipleMainNumbersException("Erro: Já existe um número principal vinculado a este cliente.");
         }
 
         Telephone newTelephone = new Telephone(
@@ -105,8 +123,16 @@ public class CostumerController {
 
     }
 
-    @PutMapping(value = "/telephone")
+    @PutMapping(value = "telephone")
     public ResponseEntity<Telephone> updateTelephone(@RequestBody UpdateTelephoneDTO updateTelephone) {
+
+        Telephone telephone = telephoneService.findById(updateTelephone.getId());
+
+        if (telephoneService.findMainNumberByCustomerId(telephone.getCustomer().getId()) != null
+                && updateTelephone.getId() != telephone.getId()) {
+            throw new MultipleMainNumbersException("Erro: Já existe um número principal vinculado a este cliente.");
+        }
+
         Telephone updatedTelephone = telephoneService.update(updateTelephone);
         return ResponseEntity.ok().body(updatedTelephone);
 
@@ -117,6 +143,5 @@ public class CostumerController {
         telephoneService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }

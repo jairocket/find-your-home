@@ -2,7 +2,7 @@ package com.wyden.findyourhome.entities;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -66,6 +66,13 @@ public class Telephone implements Serializable {
 
     public void setCustomer(Costumer customer) {
         this.customer = customer;
+    }
+
+    public boolean hasDuplicateNumber(List<Telephone> telephoneList) {
+        long count = telephoneList.stream()
+                .filter(t -> t.getNumber().equals(this.number))
+                .count();
+        return count > 1;
     }
 
 }
