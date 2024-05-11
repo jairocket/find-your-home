@@ -27,6 +27,19 @@ public class CorporateCostumer extends Costumer {
         this.advertisements = advertisements;
     }
 
+    public CorporateCostumer(
+            String name,
+            String email,
+            List<Telephone> telephones,
+            List<Advertisement> advertisements,
+            String CNPJ
+    ) {
+        super(name, email);
+        this.advertisements = advertisements;
+        this.CNPJ = CNPJ;
+        this.telephones = telephones;
+    }
+
     public CorporateCostumer() {
         super();
     }
