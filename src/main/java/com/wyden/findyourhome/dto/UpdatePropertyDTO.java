@@ -1,10 +1,9 @@
 package com.wyden.findyourhome.dto;
 
-import com.wyden.findyourhome.entities.enums.PropertyType;
+import java.util.Objects;
 
-public class UpdatePropertyDTO {
+public final class UpdatePropertyDTO {
     private final Long id;
-    private final String address;
     private final Integer rooms;
     private final Integer bathrooms;
     private final Integer privateParkingSpace;
@@ -12,9 +11,16 @@ public class UpdatePropertyDTO {
     private final Double fee;
     private final Double area;
 
-    public UpdatePropertyDTO(Long id, String address, Integer rooms, Integer bathrooms, Integer privateParkingSpace, Double taxes, Double fee, Double area) {
+    public UpdatePropertyDTO(
+            Long id,
+            Integer rooms,
+            Integer bathrooms,
+            Integer privateParkingSpace,
+            Double taxes,
+            Double fee,
+            Double area
+    ) {
         this.id = id;
-        this.address = address;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
         this.privateParkingSpace = privateParkingSpace;
@@ -25,10 +31,6 @@ public class UpdatePropertyDTO {
 
     public Long getId() {
         return id;
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public Integer getRooms() {
@@ -54,4 +56,5 @@ public class UpdatePropertyDTO {
     public Double getArea() {
         return area;
     }
+
 }
