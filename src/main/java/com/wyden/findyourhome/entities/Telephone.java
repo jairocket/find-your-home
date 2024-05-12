@@ -2,7 +2,7 @@ package com.wyden.findyourhome.entities;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
-
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -19,7 +19,7 @@ public class Telephone implements Serializable {
     @JoinColumn(name = "customer_id")
     private Costumer customer;
 
-    @Column(name = "number")
+    @Column(name = "number", unique = true)
     private String number;
 
     @Column(name = "main_number")
