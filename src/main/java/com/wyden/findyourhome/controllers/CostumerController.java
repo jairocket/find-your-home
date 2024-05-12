@@ -1,11 +1,12 @@
 package com.wyden.findyourhome.controllers;
 
-import com.wyden.findyourhome.dto.CreateIndividualCustomerDTO;
-import com.wyden.findyourhome.dto.CreateTelephoneDTO;
+import com.wyden.findyourhome.dto.*;
+import com.wyden.findyourhome.entities.CorporateCostumer;
 import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.entities.Telephone;
 import com.wyden.findyourhome.exceptions.*;
+import com.wyden.findyourhome.services.CorporateCostumerService;
 import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.IndividualCostumerService;
 import com.wyden.findyourhome.services.TelephoneService;
@@ -28,6 +29,9 @@ public class CostumerController {
 
     @Autowired
     private IndividualCostumerService individualCostumerService;
+
+    @Autowired
+    private CorporateCostumerService corporateCostumerService;
 
     @Autowired
     private TelephoneService telephoneService;
@@ -64,6 +68,36 @@ public class CostumerController {
 
         
         newCustomer.setTelephones(phones);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
+                .buildAndExpand(createdCustomer.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(newCustomer);
+    }
+
+    @PostMapping("/corporate")
+    public ResponseEntity<CorporateCostumer> createCorporateCustomer(@RequestBody CreateCorporateCustomerDTO createCorporateCustomerDTO) {
+
+        CorporateCostumer newCustomer = new CorporateCostumer(
+                createCorporateCustomerDTO.getName(),
+                createCorporateCustomerDTO.getEmail(),
+                null,
+                createCorporateCustomerDTO.getAdvertisements(),
+                createCorporateCustomerDTO.getCnpj()
+
+        );
+
+        CorporateCostumer createdCustomer = corporateCostumerService.create(newCustomer);
+
+        var telephones = createCorporateCustomerDTO
+                .getTelephones()
+                .stream()
+                .map((dto)-> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
+                .toList();
+
+        var phones = telephoneService.saveAll(telephones);
+
+        newCustomer.setTelephones(phones);
+
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(createdCustomer.getId()).toUri();
 
