@@ -140,7 +140,7 @@ public class CostumerController {
 
     }
 
-    @PutMapping(value = "telephone")
+    @PutMapping(value = "/telephone")
     public ResponseEntity<Telephone> updateTelephone(@RequestBody UpdateTelephoneDTO updateTelephone) {
 
         Telephone updatedTelephone = telephoneService.update(updateTelephone);
