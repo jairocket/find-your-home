@@ -5,7 +5,7 @@ import com.wyden.findyourhome.entities.CorporateCostumer;
 import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.entities.Telephone;
-import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
+import com.wyden.findyourhome.exceptions.*;
 import com.wyden.findyourhome.services.CorporateCostumerService;
 import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.IndividualCostumerService;
@@ -14,8 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.*;
-
-
+import com.wyden.findyourhome.dto.UpdateCustomerDTO;
+import com.wyden.findyourhome.dto.UpdateTelephoneDTO;
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.net.URI;
 
@@ -41,8 +42,11 @@ public class CostumerController {
         return ResponseEntity.ok().body(customers);
     }
 
+    
     @PostMapping("/individual")
-    public ResponseEntity<IndividualCostumer> createIndividualCustomer(@RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
+    @Transactional
+    public ResponseEntity<IndividualCostumer> createCustomer(
+            @RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
 
         IndividualCostumer newCustomer = new IndividualCostumer(
                 createIndividualCustomerDTO.getName(),
@@ -52,19 +56,18 @@ public class CostumerController {
                 createIndividualCustomerDTO.getCpf()
 
         );
-
         IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
+        
 
         var telephones = createIndividualCustomerDTO
                 .getTelephones()
                 .stream()
-                .map((dto)-> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
+                .map((dto) -> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
                 .toList();
-
         var phones = telephoneService.saveAll(telephones);
 
+        
         newCustomer.setTelephones(phones);
-
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(createdCustomer.getId()).toUri();
 
@@ -124,9 +127,9 @@ public class CostumerController {
         Costumer customer = costumerService.findById(telephone.getCustomerId());
         if (customer == null) {
             throw new ResourceNotFoundException(
-                "Não foi possível localizar o cliente.");
+                    "Não foi possível localizar o cliente.");
         }
-
+        
         Telephone newTelephone = new Telephone(
                 customer,
                 telephone.getNumber(),
@@ -139,6 +142,7 @@ public class CostumerController {
 
     @PutMapping(value = "/telephone")
     public ResponseEntity<Telephone> updateTelephone(@RequestBody UpdateTelephoneDTO updateTelephone) {
+
         Telephone updatedTelephone = telephoneService.update(updateTelephone);
         return ResponseEntity.ok().body(updatedTelephone);
 
@@ -149,6 +153,5 @@ public class CostumerController {
         telephoneService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
 
 }
