@@ -54,10 +54,8 @@ public class CostumerController {
                 null,
                 createIndividualCustomerDTO.getAdvertisements(),
                 createIndividualCustomerDTO.getCpf()
-
         );
         IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
-        
 
         var telephones = createIndividualCustomerDTO
                 .getTelephones()
@@ -66,7 +64,6 @@ public class CostumerController {
                 .toList();
         var phones = telephoneService.saveAll(telephones);
 
-        
         newCustomer.setTelephones(phones);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
                 .buildAndExpand(createdCustomer.getId()).toUri();
@@ -83,7 +80,6 @@ public class CostumerController {
                 null,
                 createCorporateCustomerDTO.getAdvertisements(),
                 createCorporateCustomerDTO.getCnpj()
-
         );
 
         CorporateCostumer createdCustomer = corporateCostumerService.create(newCustomer);
