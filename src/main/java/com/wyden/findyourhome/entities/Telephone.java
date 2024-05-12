@@ -19,7 +19,7 @@ public class Telephone implements Serializable {
     @JoinColumn(name = "customer_id")
     private Costumer customer;
 
-    @Column(name = "number")
+    @Column(name = "number", unique = true)
     private String number;
 
     @Column(name = "main_number")
@@ -66,13 +66,6 @@ public class Telephone implements Serializable {
 
     public void setCustomer(Costumer customer) {
         this.customer = customer;
-    }
-
-    public boolean hasDuplicateNumber(List<Telephone> telephoneList) {
-        long count = telephoneList.stream()
-                .filter(t -> t.getNumber().equals(this.number))
-                .count();
-        return count > 1;
     }
 
 }

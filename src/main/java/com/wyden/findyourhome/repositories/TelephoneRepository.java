@@ -9,9 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TelephoneRepository extends JpaRepository<Telephone, Long>{
     
-    @Query("SELECT t FROM Telephone t WHERE t.number = :number AND t.customer.id = :customerId")
-    Telephone findByNumberAndCustomerId(@Param("number") String number, @Param("customerId") Long customerId);
-
     @Query("SELECT t FROM Telephone t WHERE t.mainNumber = TRUE AND t.customer.id = :customerId")
     Telephone findMainNumberByCustomerId(@Param("customerId") Long customerId);
 
