@@ -2,7 +2,6 @@ package com.wyden.findyourhome.services;
 
 import com.wyden.findyourhome.dto.UpdateCustomerDTO;
 import com.wyden.findyourhome.entities.Costumer;
-import com.wyden.findyourhome.entities.IndividualCostumer;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.repositories.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,8 +37,6 @@ public class CostumerService {
 
 
     public void delete(Long id) {
-
         repository.deleteById(id);
-
     }
 }
