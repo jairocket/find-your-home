@@ -2,6 +2,7 @@ package com.wyden.findyourhome.services;
 
 import com.wyden.findyourhome.dto.UpdateCustomerDTO;
 import com.wyden.findyourhome.entities.Costumer;
+import com.wyden.findyourhome.exceptions.CustomerException;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.repositories.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @Service
 public class CostumerService {
     @Autowired
-    CostumerRepository repository;
+    private CostumerRepository repository;
 
     public Costumer findById(Long id) {
         Optional<Costumer> customer = repository.findById(id);
@@ -34,7 +35,6 @@ public class CostumerService {
 
         return repository.save(customer);
     }
-
 
     public void delete(Long id) {
         repository.deleteById(id);

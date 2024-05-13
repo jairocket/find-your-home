@@ -1,8 +1,10 @@
 package com.wyden.findyourhome.entities;
 
+import com.wyden.findyourhome.exceptions.CustomerException;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 @Entity(name = "COSTUMERS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -12,6 +14,7 @@ public class Costumer implements Serializable {
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
 
     public Costumer(
@@ -25,6 +28,7 @@ public class Costumer implements Serializable {
     }
 
     public Costumer(String name, String email) {
+        validateEmail(email);
         this.name = name;
         this.email = email;
     }
@@ -50,6 +54,10 @@ public class Costumer implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    private void validateEmail(String email) {
+        Optional.ofNullable(email).orElseThrow(()-> new CustomerException("Email precisa ser informado."));
     }
 
 }
