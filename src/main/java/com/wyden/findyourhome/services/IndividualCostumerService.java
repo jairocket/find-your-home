@@ -17,7 +17,7 @@ public class IndividualCostumerService {
         try{
             return repository.save(newCustomer);
         } catch (DataAccessException exception) {
-            throw new CustomerException("Este cpf já foi cadastrado.");
+            throw new CustomerException("Email ou CPF já cadastrado");
         }
     }
 

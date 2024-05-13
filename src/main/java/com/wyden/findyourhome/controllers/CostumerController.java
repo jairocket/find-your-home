@@ -42,11 +42,11 @@ public class CostumerController {
         return ResponseEntity.ok().body(customers);
     }
 
-    
     @PostMapping("/individual")
     @Transactional
     public ResponseEntity<IndividualCostumer> createCustomer(
-            @RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO) {
+            @RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO
+    ) {
 
         IndividualCostumer newCustomer = new IndividualCostumer(
                 createIndividualCustomerDTO.getName(),
@@ -55,6 +55,7 @@ public class CostumerController {
                 createIndividualCustomerDTO.getAdvertisements(),
                 createIndividualCustomerDTO.getCpf()
         );
+
         IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
 
         var telephones = createIndividualCustomerDTO
@@ -72,8 +73,9 @@ public class CostumerController {
     }
 
     @PostMapping("/corporate")
-    public ResponseEntity<CorporateCostumer> createCorporateCustomer(@RequestBody CreateCorporateCustomerDTO createCorporateCustomerDTO) {
-
+    public ResponseEntity<CorporateCostumer> createCorporateCustomer(
+            @RequestBody CreateCorporateCustomerDTO createCorporateCustomerDTO
+    ) {
         CorporateCostumer newCustomer = new CorporateCostumer(
                 createCorporateCustomerDTO.getName(),
                 createCorporateCustomerDTO.getEmail(),
@@ -133,7 +135,6 @@ public class CostumerController {
 
         Telephone createdTelephone = telephoneService.create(newTelephone);
         return ResponseEntity.ok().body(createdTelephone);
-
     }
 
     @PutMapping(value = "/telephone")
@@ -141,7 +142,6 @@ public class CostumerController {
 
         Telephone updatedTelephone = telephoneService.update(updateTelephone);
         return ResponseEntity.ok().body(updatedTelephone);
-
     }
 
     @DeleteMapping(value = "/telephone/{id}")
