@@ -1,45 +1,45 @@
 package com.wyden.findyourhome.entities;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "TELEPHONE")
-public class Telephone implements Serializable{
+@Table(name = "TELEPHONES")
+public class Telephone implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "custumer_id")
-    private Customer customer;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "costumer_id")
+    private Costumer costumer;
 
-    @Column(name = "number")
+    @Column(name = "number", unique = true)
     private String number;
 
     @Column(name = "main_number")
     private boolean mainNumber;
 
-
     public Telephone(
-        int id, 
-        String number, 
-        boolean mainNumber, 
-        Customer customer
+        Costumer costumer,
+        String number,
+        boolean mainNumber
     ) {
-        this.id = id;
+        this.costumer = costumer;
         this.number = number;
         this.mainNumber = mainNumber;
-        this.customer = customer;
     }
-
 
     public Telephone() {
     }
 
 
-    public int getId() {
+
+    public Long getId() {
         return this.id;
     }
 
@@ -51,10 +51,6 @@ public class Telephone implements Serializable{
         this.number = number;
     }
 
-    public boolean isMainNumber() {
-        return this.mainNumber;
-    }
-
     public boolean getMainNumber() {
         return this.mainNumber;
     }
@@ -63,13 +59,12 @@ public class Telephone implements Serializable{
         this.mainNumber = mainNumber;
     }
 
-    public Customer getCustomer() {
-        return this.customer;
+    public Costumer getCostumer() {
+        return this.costumer;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(Costumer customer) {
+        this.costumer = customer;
     }
-
 
 }

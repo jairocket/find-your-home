@@ -6,12 +6,6 @@ import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
 import java.io.Serializable;
 import java.time.Instant;
 
-import com.wyden.findyourhome.entities.Property;
-
-/**
- *
- * @author isado
- */
 @Entity
 @Table(name = "ADVERTISEMENT")
 public class Advertisement implements Serializable{
@@ -26,6 +20,8 @@ public class Advertisement implements Serializable{
 
     private AdvertisementStatus status;
 
+    @OneToOne
+    @MapsId
     private Property property;
 
     private Instant postDate;
@@ -47,7 +43,7 @@ public class Advertisement implements Serializable{
     ) {
 
         this.costumer = costumer;
-        this.status = status; 
+        this.status = status;
         this.property = property;
         this.postDate = postDate;
         this.value = value;
@@ -58,7 +54,7 @@ public class Advertisement implements Serializable{
     public Advertisement(){}
 
     public Advertisement(
-            Long id,   
+            Long id,
             Costumer costumer,
             AdvertisementStatus status,
             Property property,
@@ -70,15 +66,15 @@ public class Advertisement implements Serializable{
 
         this.id = id;
         this.costumer = costumer;
-        this.status = status; 
+        this.status = status;
         this.property = property;
         this.postDate = postDate;
         this.value = value;
         this.soldIn = soldIn;
         this.description = description;
-    
+
     }
-   
+
     public Long getId() {
         return this.id;
     }
@@ -86,11 +82,11 @@ public class Advertisement implements Serializable{
     public Costumer getCostumer() {
         return this.costumer;
     }
-    
+
     public AdvertisementStatus getStatus() {
         return this.status;
-    }    
-    
+    }
+
     public void setStatus(AdvertisementStatus status) {
         this.status = status;
     }
@@ -128,6 +124,6 @@ public class Advertisement implements Serializable{
     }
 
     public void setDescription(String description) {
-        this.description = description; 
+        this.description = description;
     }
 }
