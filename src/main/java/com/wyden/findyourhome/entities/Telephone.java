@@ -1,12 +1,11 @@
 package com.wyden.findyourhome.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.io.Serializable;
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "TELEPHONE")
+@Table(name = "TELEPHONES")
 public class Telephone implements Serializable {
 
     @Id
@@ -14,10 +13,10 @@ public class Telephone implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Costumer customer;
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "costumer_id")
+    private Costumer costumer;
 
     @Column(name = "number", unique = true)
     private String number;
@@ -26,11 +25,11 @@ public class Telephone implements Serializable {
     private boolean mainNumber;
 
     public Telephone(
-        Costumer customer,
+        Costumer costumer,
         String number,
         boolean mainNumber
     ) {
-        this.customer = customer;
+        this.costumer = costumer;
         this.number = number;
         this.mainNumber = mainNumber;
     }
@@ -60,12 +59,12 @@ public class Telephone implements Serializable {
         this.mainNumber = mainNumber;
     }
 
-    public Costumer getCustomer() {
-        return this.customer;
+    public Costumer getCostumer() {
+        return this.costumer;
     }
 
     public void setCustomer(Costumer customer) {
-        this.customer = customer;
+        this.costumer = customer;
     }
 
 }

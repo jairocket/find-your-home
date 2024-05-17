@@ -22,7 +22,7 @@ public class TelephoneService {
     private TelephoneRepository repository;
 
     public Telephone create(Telephone newTelephone) {
-        checkForMainNumbers(newTelephone.getCustomer().getId(), newTelephone);
+        checkForMainNumbers(newTelephone.getCostumer().getId(), newTelephone);
         try {
             return repository.save(newTelephone);
         } catch (NonUniqueResultException e) {
@@ -38,7 +38,7 @@ public class TelephoneService {
             throw new MultipleMainNumbersException("Erro: Mais de um número principal na requisição.");
         }
         for (Telephone telephone : telephones) {
-            checkForMainNumbers(telephone.getCustomer().getId(), telephone);
+            checkForMainNumbers(telephone.getCostumer().getId(), telephone);
         }
 
         try {
@@ -62,7 +62,7 @@ public class TelephoneService {
     public Telephone update(UpdateTelephoneDTO newTelephone) {
         Telephone telephone = repository.findById(newTelephone.getId()).orElseThrow(() -> new ResourceNotFoundException(
                 "Não foi possível atualizar este recurso. Recurso não encontrado."));
-        Telephone existingMainNumber = repository.findMainNumberByCustomerId(telephone.getCustomer().getId());
+        Telephone existingMainNumber = repository.findMainNumberByCustomerId(telephone.getCostumer().getId());
 
         if (newTelephone.getId() != existingMainNumber.getId() && newTelephone.getMainNumber() == true){
             throw new MultipleMainNumbersException("Erro: Já existe um número principal vinculado a este cliente.");

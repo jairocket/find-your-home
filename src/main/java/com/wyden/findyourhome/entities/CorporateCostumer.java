@@ -1,5 +1,6 @@
 package com.wyden.findyourhome.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.wyden.findyourhome.exceptions.CustomerException;
 import jakarta.persistence.*;
 
@@ -13,9 +14,10 @@ import java.util.regex.Pattern;
 public class CorporateCostumer extends Costumer {
     @Column(unique = true)
     private String CNPJ;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
     public CorporateCostumer (
