@@ -21,7 +21,23 @@ docker-compose down
 ```
 mvn spring-boot:run 
 ```
-### Prototipagem do projeto
+## Prototipagem do projeto
+
+### Landing Page
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Capa.jpeg?raw=true)
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Fundo.jpeg?raw=true)
+
+### Pesquisa
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Pesquisa.jpeg?raw=true)
+
+### Detalhes
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Info_Imovel.jpeg?raw=true)
+
+### Avaliações
 
 ![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Avalaia%C3%A7%C3%B5es.jpeg?raw=true)
 
