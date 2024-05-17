@@ -23,6 +23,7 @@ mvn spring-boot:run
 ```
 ### Prototipagem do projeto
 
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Avalaia%C3%A7%C3%B5es.jpeg?raw=true)
 
 ## Requisitos funcionais
 
