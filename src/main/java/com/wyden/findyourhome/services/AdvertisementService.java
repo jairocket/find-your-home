@@ -23,11 +23,15 @@ public class AdvertisementService {
     
     public List<Advertisement> findAll(){
         return repository.findAll();
-   
     }
-      public Advertisement findById(Long id) {
+
+    public Advertisement findById(Long id) {
         Optional<Advertisement> advertisement = repository.findById(id);
         return advertisement.orElse(null);
+    }
+
+    public Advertisement update(Advertisement advertisement) {
+        return repository.save(advertisement);
     }
 
 }

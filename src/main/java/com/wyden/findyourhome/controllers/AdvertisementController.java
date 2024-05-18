@@ -1,6 +1,7 @@
 package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreateAdvertisementDTO;
+import com.wyden.findyourhome.dto.UpdateAdversementDTO;
 import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.Property;
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
@@ -56,7 +57,18 @@ public class AdvertisementController {
 
         return ResponseEntity.created(uri).body(createdAdvertisement);
 
+    }
 
+    @PutMapping
+    public ResponseEntity<Advertisement> update(@RequestBody UpdateAdversementDTO updateAdversementDTO) {
+        Advertisement advertisement = service.findById(updateAdversementDTO.getId());
+
+        advertisement.setDescription(updateAdversementDTO.getDescription());
+        advertisement.setValue(updateAdversementDTO.getValue());
+
+        Advertisement updatedAdvertisement = service.update(advertisement);
+
+        return ResponseEntity.ok().body(updatedAdvertisement);
     }
 
     @GetMapping(value = "/{id}")
