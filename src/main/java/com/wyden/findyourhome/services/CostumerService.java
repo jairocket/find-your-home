@@ -1,8 +1,7 @@
 package com.wyden.findyourhome.services;
 
-import com.wyden.findyourhome.dto.UpdateCustomerDTO;
+import com.wyden.findyourhome.dto.UpdateCostumerDTO;
 import com.wyden.findyourhome.entities.Costumer;
-import com.wyden.findyourhome.exceptions.CustomerException;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.repositories.CostumerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +16,23 @@ public class CostumerService {
     private CostumerRepository repository;
 
     public Costumer findById(Long id) {
-        Optional<Costumer> customer = repository.findById(id);
-        return customer.orElse(null);
+        Optional<Costumer> costumer = repository.findById(id);
+        return costumer.orElse(null);
     }
 
     public List<Costumer> findAll() {
         return repository.findAll();
     }
 
-    public Costumer update(UpdateCustomerDTO newCustomer) {
-        Costumer customer = repository.findById(newCustomer.getId())
+    public Costumer update(UpdateCostumerDTO newCostumer) {
+        Costumer costumer = repository.findById(newCostumer.getId())
                 .orElseThrow(() -> new ResourceNotFoundException(
                         "Não foi possível atualizar este recurso. Recurso não encontrado."));
 
-        customer.setName(newCustomer.getName());
-        customer.setEmail(newCustomer.getEmail());
+        costumer.setName(newCostumer.getName());
+        costumer.setEmail(newCostumer.getEmail());
 
-        return repository.save(customer);
+        return repository.save(costumer);
     }
 
     public void delete(Long id) {

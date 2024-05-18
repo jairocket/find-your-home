@@ -1,6 +1,6 @@
 package com.wyden.findyourhome.controllers;
 
-import com.wyden.findyourhome.exceptions.CustomerException;
+import com.wyden.findyourhome.exceptions.CostumerException;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.exceptions.StandardError;
 import com.wyden.findyourhome.exceptions.TelephoneException.*;
@@ -28,8 +28,8 @@ public class ControllerExceptionHandler extends RuntimeException {
         return ResponseEntity.status(status).body(error);
     }
 
-    @ExceptionHandler(CustomerException.class)
-    public ResponseEntity<StandardError> handleCustomerException(CustomerException exception, HttpServletRequest request) {
+    @ExceptionHandler(CostumerException.class)
+    public ResponseEntity<StandardError> handleCostumerException(CostumerException exception, HttpServletRequest request) {
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         StandardError error = new StandardError(

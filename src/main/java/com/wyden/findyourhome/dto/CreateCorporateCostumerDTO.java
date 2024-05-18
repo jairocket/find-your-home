@@ -1,27 +1,26 @@
 package com.wyden.findyourhome.dto;
 
 import com.wyden.findyourhome.entities.Advertisement;
-import com.wyden.findyourhome.entities.Telephone;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreateIndividualCustomerDTO {
+public class CreateCorporateCostumerDTO {
     private String name;
     private String email;
-    private String cpf;
+    private String cnpj;
     private List<Advertisement> advertisements = new ArrayList<>();
     private List<CreateTelephoneDTO> telephones = new ArrayList<>();
 
-    public CreateIndividualCustomerDTO(
+    public CreateCorporateCostumerDTO(
             String name,
             String email,
-            String cpf,
+            String cnpj,
             List<CreateTelephoneDTO> telephones
     ) {
         this.name = name;
         this.email = email;
-        this.cpf = cpf;
+        this.cnpj = cnpj;
         this.telephones = telephones;
     }
 
@@ -33,8 +32,8 @@ public class CreateIndividualCustomerDTO {
         return email;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCnpj() {
+        return cnpj;
     }
 
     public List<CreateTelephoneDTO> getTelephones() {

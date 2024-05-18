@@ -1,6 +1,7 @@
 package com.wyden.findyourhome.entities;
 
-import com.wyden.findyourhome.exceptions.CustomerException;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wyden.findyourhome.exceptions.CostumerException;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,9 +14,13 @@ import java.util.regex.Pattern;
 public class CorporateCostumer extends Costumer {
     @Column(unique = true)
     private String CNPJ;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
     public CorporateCostumer (
@@ -71,12 +76,12 @@ public class CorporateCostumer extends Costumer {
     }
 
     private void validateCnpj(String cnpj) {
-        cnpj = Optional.ofNullable(cnpj).orElseThrow(() -> new CustomerException("É preciso informar o CNPJ"));
+        cnpj = Optional.ofNullable(cnpj).orElseThrow(() -> new CostumerException("É preciso informar o CNPJ"));
         Pattern cnpjPattern = Pattern.compile("[0-9]{2}.[0-9]{3}.[0-9]{3}/[0-9]{4}-[0-9]{2}");
         Matcher cnpjMatcher = cnpjPattern.matcher(cnpj);
 
         if(!cnpjMatcher.matches()) {
-            throw new CustomerException("CNPJ inválido.");
+            throw new CostumerException("CNPJ inválido.");
         }
 
     }
