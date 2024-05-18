@@ -14,14 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.bind.annotation.*;
-import com.wyden.findyourhome.dto.UpdateCustomerDTO;
+import com.wyden.findyourhome.dto.UpdateCostumerDTO;
 import com.wyden.findyourhome.dto.UpdateTelephoneDTO;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.net.URI;
 
 @RestController
-@RequestMapping(value = "/customers")
+@RequestMapping(value = "/costumers")
 public class CostumerController {
 
     @Autowired
@@ -38,80 +38,80 @@ public class CostumerController {
 
     @GetMapping
     public ResponseEntity<List<Costumer>> findAll() {
-        List<Costumer> customers = costumerService.findAll();
-        return ResponseEntity.ok().body(customers);
+        List<Costumer> costumers = costumerService.findAll();
+        return ResponseEntity.ok().body(costumers);
     }
 
     @PostMapping("/individual")
     @Transactional
-    public ResponseEntity<IndividualCostumer> createCustomer(
-            @RequestBody CreateIndividualCustomerDTO createIndividualCustomerDTO
+    public ResponseEntity<IndividualCostumer> createCostumer(
+            @RequestBody CreateIndividualCostumerDTO createIndividualCostumerDTO
     ) {
 
-        IndividualCostumer newCustomer = new IndividualCostumer(
-                createIndividualCustomerDTO.getName(),
-                createIndividualCustomerDTO.getEmail(),
+        IndividualCostumer individualCostumer = new IndividualCostumer(
+                createIndividualCostumerDTO.getName(),
+                createIndividualCostumerDTO.getEmail(),
                 null,
-                createIndividualCustomerDTO.getAdvertisements(),
-                createIndividualCustomerDTO.getCpf()
+                createIndividualCostumerDTO.getAdvertisements(),
+                createIndividualCostumerDTO.getCpf()
         );
 
-        IndividualCostumer createdCustomer = individualCostumerService.create(newCustomer);
+        IndividualCostumer createdCostumer = individualCostumerService.create(individualCostumer);
 
-        var telephones = createIndividualCustomerDTO
+        var telephones = createIndividualCostumerDTO
                 .getTelephones()
                 .stream()
-                .map((dto) -> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
+                .map((dto) -> new Telephone(createdCostumer, dto.getNumber(), dto.getMainNumber()))
                 .toList();
         var phones = telephoneService.saveAll(telephones);
 
-        newCustomer.setTelephones(phones);
+        individualCostumer.setTelephones(phones);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                .buildAndExpand(createdCustomer.getId()).toUri();
+                .buildAndExpand(createdCostumer.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(newCustomer);
+        return ResponseEntity.created(uri).body(individualCostumer);
     }
 
     @PostMapping("/corporate")
-    public ResponseEntity<CorporateCostumer> createCorporateCustomer(
-            @RequestBody CreateCorporateCustomerDTO createCorporateCustomerDTO
+    public ResponseEntity<CorporateCostumer> createCorporateCostumer(
+            @RequestBody CreateCorporateCostumerDTO createCorporateCostumerDTO
     ) {
-        CorporateCostumer newCustomer = new CorporateCostumer(
-                createCorporateCustomerDTO.getName(),
-                createCorporateCustomerDTO.getEmail(),
+        CorporateCostumer newCostumer = new CorporateCostumer(
+                createCorporateCostumerDTO.getName(),
+                createCorporateCostumerDTO.getEmail(),
                 null,
-                createCorporateCustomerDTO.getAdvertisements(),
-                createCorporateCustomerDTO.getCnpj()
+                createCorporateCostumerDTO.getAdvertisements(),
+                createCorporateCostumerDTO.getCnpj()
         );
 
-        CorporateCostumer createdCustomer = corporateCostumerService.create(newCustomer);
+        CorporateCostumer corporateCostumer = corporateCostumerService.create(newCostumer);
 
-        var telephones = createCorporateCustomerDTO
+        var telephones = createCorporateCostumerDTO
                 .getTelephones()
                 .stream()
-                .map((dto)-> new Telephone(createdCustomer, dto.getNumber(), dto.getMainNumber()))
+                .map((dto)-> new Telephone(corporateCostumer, dto.getNumber(), dto.getMainNumber()))
                 .toList();
 
         var phones = telephoneService.saveAll(telephones);
 
-        newCustomer.setTelephones(phones);
+        newCostumer.setTelephones(phones);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}")
-                .buildAndExpand(createdCustomer.getId()).toUri();
+                .buildAndExpand(corporateCostumer.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(newCustomer);
+        return ResponseEntity.created(uri).body(newCostumer);
     }
 
     @PutMapping
-    public ResponseEntity<Costumer> update(@RequestBody UpdateCustomerDTO updateCustomerDTO) {
-        Costumer updatedCustomer = costumerService.update(updateCustomerDTO);
-        return ResponseEntity.ok().body(updatedCustomer);
+    public ResponseEntity<Costumer> update(@RequestBody UpdateCostumerDTO updateCostumerDTO) {
+        Costumer updatedCostumer = costumerService.update(updateCostumerDTO);
+        return ResponseEntity.ok().body(updatedCostumer);
     }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Costumer> findById(@PathVariable Long id) {
-        Costumer customer = costumerService.findById(id);
-        return ResponseEntity.ok().body(customer);
+        Costumer costumer = costumerService.findById(id);
+        return ResponseEntity.ok().body(costumer);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -122,14 +122,14 @@ public class CostumerController {
 
     @PostMapping(value = "/telephone")
     public ResponseEntity<Telephone> createTelephone(@RequestBody CreateTelephoneDTO telephone) {
-        Costumer customer = costumerService.findById(telephone.getCustomerId());
-        if (customer == null) {
+        Costumer costumer = costumerService.findById(telephone.getCostumerId());
+        if (costumer == null) {
             throw new ResourceNotFoundException(
                     "Não foi possível localizar o cliente.");
         }
         
         Telephone newTelephone = new Telephone(
-                customer,
+                costumer,
                 telephone.getNumber(),
                 telephone.getMainNumber());
 

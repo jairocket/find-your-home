@@ -1,6 +1,6 @@
 package com.wyden.findyourhome.entities;
 
-import com.wyden.findyourhome.exceptions.CustomerException;
+import com.wyden.findyourhome.exceptions.CostumerException;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -13,7 +13,9 @@ public class Costumer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
     private String name;
+
     @Column(unique = true)
     private String email;
 
@@ -57,7 +59,7 @@ public class Costumer implements Serializable {
     }
 
     private void validateEmail(String email) {
-        Optional.ofNullable(email).orElseThrow(()-> new CustomerException("Email precisa ser informado."));
+        Optional.ofNullable(email).orElseThrow(()-> new CostumerException("Email precisa ser informado."));
     }
 
 }
