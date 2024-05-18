@@ -16,6 +16,10 @@ public class AdvertisementService {
     
     @Autowired
     private AdvertisementRepository repository;
+
+    public Advertisement create(Advertisement advertisement) {
+        return repository.save(advertisement);
+    }
     
     public List<Advertisement> findAll(){
         return repository.findAll();

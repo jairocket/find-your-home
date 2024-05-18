@@ -19,6 +19,7 @@ public class IndividualCostumer extends Costumer {
     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
