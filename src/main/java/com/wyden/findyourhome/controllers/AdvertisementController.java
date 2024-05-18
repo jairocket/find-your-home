@@ -70,6 +70,18 @@ public class AdvertisementController {
 
         return ResponseEntity.ok().body(updatedAdvertisement);
     }
+   
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Advertisement> updateSoldStatus(@PathVariable Long id) {
+        Advertisement advertisement = service.findById(id);
+
+        advertisement.setStatus(AdvertisementStatus.SOLD);
+        advertisement.setSoldIn(Instant.now());
+        Advertisement updatedAdvertisement = service.update(advertisement);
+
+        return ResponseEntity.ok().body(updatedAdvertisement);
+    }
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Advertisement> findById(@PathVariable Long id){

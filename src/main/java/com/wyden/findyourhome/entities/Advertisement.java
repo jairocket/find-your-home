@@ -117,7 +117,7 @@ public class Advertisement implements Serializable{
         return this.soldIn;
     }
 
-    public void setSoldId(Instant soldIn) {
+    public void setSoldIn(Instant soldIn) {
         this.soldIn = soldIn;
     }
 
