@@ -39,11 +39,11 @@ public class AdvertisementController {
     public ResponseEntity<Advertisement> create(@RequestBody CreateAdvertisementDTO createAdvertisementDTO) {
 
         Costumer costumer = costumerService.findById(createAdvertisementDTO.getCostumerId());
-        Property property = propertyService.findById(createAdvertisementDTO.getCostumerId());
+        Property property = propertyService.findById(createAdvertisementDTO.getPropertyId());
 
         Advertisement advertisement = new Advertisement(
                 costumer,
-                AdvertisementStatus.valueOf(createAdvertisementDTO.getStatus()),
+                AdvertisementStatus.ACTIVE,
                 property,
                 Instant.now(),
                 createAdvertisementDTO.getValue(),
