@@ -2,17 +2,17 @@ package com.wyden.findyourhome.dto;
 
 public class CreateTelephoneDTO {
 
-    private Long customerId;
+    private Long costumerId;
     private String number;
     private boolean mainNumber;
 
 
     public CreateTelephoneDTO(
-        Long customerId,
+        Long costumerId,
         String number,
         boolean mainNumber
     ) {
-        this.customerId = customerId;
+        this.costumerId = costumerId;
         this.number = number;
         this.mainNumber = mainNumber;
     }
@@ -27,8 +27,8 @@ public class CreateTelephoneDTO {
     }
 
 
-    public Long getCustomerId() {
-        return this.customerId;
+    public Long getCostumerId() {
+        return this.costumerId;
     }
 
 }

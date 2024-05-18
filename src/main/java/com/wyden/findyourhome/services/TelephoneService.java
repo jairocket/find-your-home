@@ -55,14 +55,14 @@ public class TelephoneService {
         return telephone.orElse(null);
     }
 
-    public Telephone findMainNumberByCustomerId(Long customerId) {
-        return repository.findMainNumberByCustomerId(customerId);
+    public Telephone findMainNumberByCostumerId(Long costumerId) {
+        return repository.findMainNumberByCostumerId(costumerId);
     }
 
     public Telephone update(UpdateTelephoneDTO newTelephone) {
         Telephone telephone = repository.findById(newTelephone.getId()).orElseThrow(() -> new ResourceNotFoundException(
                 "Não foi possível atualizar este recurso. Recurso não encontrado."));
-        Telephone existingMainNumber = repository.findMainNumberByCustomerId(telephone.getCostumer().getId());
+        Telephone existingMainNumber = repository.findMainNumberByCostumerId(telephone.getCostumer().getId());
 
         if (newTelephone.getId() != existingMainNumber.getId() && newTelephone.getMainNumber() == true){
             throw new MultipleMainNumbersException("Erro: Já existe um número principal vinculado a este cliente.");
@@ -86,8 +86,8 @@ public class TelephoneService {
 
     }
 
-    private void checkForMainNumbers(long customerId, Telephone telephone) throws MultipleMainNumbersException {
-        if (repository.findMainNumberByCustomerId(customerId) != null && telephone.getMainNumber() == true) {
+    private void checkForMainNumbers(Long costumerId, Telephone telephone) throws MultipleMainNumbersException {
+        if (repository.findMainNumberByCostumerId(costumerId) != null && telephone.getMainNumber() == true) {
             throw new MultipleMainNumbersException("Erro: Já existe um número principal vinculado a este cliente.");
         }
     }

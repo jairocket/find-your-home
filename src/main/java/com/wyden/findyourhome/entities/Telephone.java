@@ -37,8 +37,6 @@ public class Telephone implements Serializable {
     public Telephone() {
     }
 
-
-
     public Long getId() {
         return this.id;
     }
@@ -63,8 +61,8 @@ public class Telephone implements Serializable {
         return this.costumer;
     }
 
-    public void setCustomer(Costumer customer) {
-        this.costumer = customer;
+    public void setCostumer(Costumer costumer) {
+        this.costumer = costumer;
     }
 
 }

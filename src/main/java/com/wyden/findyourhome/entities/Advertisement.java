@@ -15,7 +15,7 @@ public class Advertisement implements Serializable{
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "costumer_id")
     private Costumer costumer;
 
     private AdvertisementStatus status;
