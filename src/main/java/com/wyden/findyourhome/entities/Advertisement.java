@@ -1,4 +1,5 @@
 package com.wyden.findyourhome.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
@@ -14,6 +15,7 @@ public class Advertisement implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "costumer_id")
     private Costumer costumer;

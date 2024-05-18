@@ -14,9 +14,12 @@ import java.util.regex.Pattern;
 public class CorporateCostumer extends Costumer {
     @Column(unique = true)
     private String CNPJ;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
+
+    @JsonManagedReference
     @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 

@@ -13,7 +13,9 @@ public class Costumer implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id;
+
     private String name;
+
     @Column(unique = true)
     private String email;
 
