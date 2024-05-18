@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.wyden.findyourhome.entities.Advertisement;
 import com.wyden.findyourhome.services.AdvertisementService;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/advertisements")
@@ -24,4 +24,9 @@ public class AdvertisementController {
         return ResponseEntity.ok().body(advertisement);
     }
 
+    @GetMapping
+    public ResponseEntity<List<Advertisement>> findAll() {
+       java.util.List<Advertisement> advertisement = service.findAll();
+        return ResponseEntity.ok().body(advertisement);
+    }
 }
