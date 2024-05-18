@@ -1,11 +1,13 @@
 package com.wyden.findyourhome.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.wyden.findyourhome.exceptions.AdvertisementException;
 import jakarta.persistence.*;
 
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Optional;
 
 @Entity
 @Table(name = "ADVERTISEMENT")
@@ -43,7 +45,7 @@ public class Advertisement implements Serializable{
             Instant soldIn,
             String description
     ) {
-
+        validateConstructor(costumer, property);
         this.costumer = costumer;
         this.status = status;
         this.property = property;
@@ -127,5 +129,10 @@ public class Advertisement implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    private void validateConstructor(Costumer costumer, Property property) {
+        costumer = Optional.ofNullable(costumer).orElseThrow(() -> new AdvertisementException("Cliente não encontrado"));
+        property = Optional.ofNullable(property).orElseThrow(() -> new AdvertisementException("Imóvel não encontrado"));
     }
 }
