@@ -11,10 +11,6 @@ import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import com.wyden.findyourhome.entities.Advertisement;
@@ -107,8 +103,8 @@ public class AdvertisementController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Advertisement>> findAll() {
-       java.util.List<Advertisement> advertisement = service.findAll();
+    public ResponseEntity<List<Advertisement>> findAll(@RequestParam(required = false) AdvertisementStatus status) {
+        java.util.List<Advertisement> advertisement = service.findAll(status);
         return ResponseEntity.ok().body(advertisement);
     }
 }
