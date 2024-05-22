@@ -1,11 +1,14 @@
 package com.wyden.findyourhome.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.wyden.findyourhome.exceptions.AdvertisementException;
 import jakarta.persistence.*;
 
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
+import org.apache.commons.math3.util.Precision;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Optional;
 
 @Entity
 @Table(name = "ADVERTISEMENT")
@@ -43,12 +46,12 @@ public class Advertisement implements Serializable{
             Instant soldIn,
             String description
     ) {
-
+        validateConstructor(costumer, property);
         this.costumer = costumer;
         this.status = status;
         this.property = property;
         this.postDate = postDate;
-        this.value = value;
+        this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
     }
@@ -71,10 +74,9 @@ public class Advertisement implements Serializable{
         this.status = status;
         this.property = property;
         this.postDate = postDate;
-        this.value = value;
+        this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
-
     }
 
     public Long getId() {
@@ -101,23 +103,19 @@ public class Advertisement implements Serializable{
         return this.postDate;
     }
 
-    public void setPostDate(Instant postDate) {
-        this.postDate = postDate;
-    }
-
     public Double getValue() {
         return this.value;
     }
 
     public void setValue(Double value) {
-        this.value = value;
+        this.value = round(value);
     }
 
     public Instant getSoldIn() {
         return this.soldIn;
     }
 
-    public void setSoldId(Instant soldIn) {
+    public void setSoldIn(Instant soldIn) {
         this.soldIn = soldIn;
     }
 
@@ -127,5 +125,15 @@ public class Advertisement implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    private void validateConstructor(Costumer costumer, Property property) {
+        Optional.ofNullable(costumer).orElseThrow(() -> new AdvertisementException("Cliente não encontrado"));
+        Optional.ofNullable(property).orElseThrow(() -> new AdvertisementException("Imóvel não encontrado"));
+    }
+
+    private Double round(Double value) {
+        value = Optional.ofNullable(value).orElseThrow(()-> new AdvertisementException("Valor não pode ser nulo"));
+        return Precision.round(value, 2);
     }
 }

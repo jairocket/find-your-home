@@ -2,9 +2,11 @@ package com.wyden.findyourhome.controllers;
 
 import com.wyden.findyourhome.dto.CreateAdvertisementDTO;
 import com.wyden.findyourhome.dto.UpdateAdversementDTO;
+import com.wyden.findyourhome.dto.UpdateStatusDTO;
 import com.wyden.findyourhome.entities.Costumer;
 import com.wyden.findyourhome.entities.Property;
 import com.wyden.findyourhome.entities.enums.AdvertisementStatus;
+import com.wyden.findyourhome.exceptions.AdvertisementException;
 import com.wyden.findyourhome.services.CostumerService;
 import com.wyden.findyourhome.services.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +68,32 @@ public class AdvertisementController {
 
         return ResponseEntity.ok().body(updatedAdvertisement);
     }
+   
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Advertisement> updateSoldStatus(@PathVariable Long id) {
+        Advertisement advertisement = service.findById(id);
+
+        advertisement.setStatus(AdvertisementStatus.SOLD);
+        advertisement.setSoldIn(Instant.now());
+        Advertisement updatedAdvertisement = service.update(advertisement);
+
+        return ResponseEntity.ok().body(updatedAdvertisement);
+    }
+
+    @PutMapping(value = "/status")
+    public ResponseEntity<Advertisement> updateStatus(@RequestBody UpdateStatusDTO updateStatusDTO) {
+        Advertisement advertisement = service.findById(updateStatusDTO.getId());
+
+        if(updateStatusDTO.getStatus().equals("SOLD")) {
+            throw new AdvertisementException("Ação inválida");
+        }
+
+        advertisement.setStatus(AdvertisementStatus.valueOf(updateStatusDTO.getStatus()));
+        Advertisement updatedAdvertisement = service.update(advertisement);
+
+        return ResponseEntity.ok().body(updatedAdvertisement);
+    }
+
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Advertisement> findById(@PathVariable Long id){

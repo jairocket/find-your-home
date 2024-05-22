@@ -1,5 +1,6 @@
-package com.wyden.findyourhome.controllers;
+package com.wyden.findyourhome.infra;
 
+import com.wyden.findyourhome.exceptions.AdvertisementException;
 import com.wyden.findyourhome.exceptions.CostumerException;
 import com.wyden.findyourhome.exceptions.ResourceNotFoundException;
 import com.wyden.findyourhome.exceptions.StandardError;
@@ -59,6 +60,20 @@ public class ControllerExceptionHandler extends RuntimeException {
     @ExceptionHandler(PhoneNumberAlreadyExistsException.class)
     public ResponseEntity<StandardError> handlePhoneNumberAlreadyExistsException(PhoneNumberAlreadyExistsException ex, WebRequest request) {
         HttpStatus status = HttpStatus.CONFLICT; 
+
+        StandardError error = new StandardError(
+                status.value(),
+                System.currentTimeMillis(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+
+        return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler(AdvertisementException.class)
+    public ResponseEntity<StandardError> advertisementException(AdvertisementException ex, WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
 
         StandardError error = new StandardError(
                 status.value(),
