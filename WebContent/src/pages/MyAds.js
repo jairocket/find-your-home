@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Reports() {
+function MyAds() {
   return (
     <div className='reports'>
-      <h1>Reports</h1>
+      <h1>Meus anuncios</h1>
     </div>
   );
 }
 
-export default Reports;
+export default MyAds;

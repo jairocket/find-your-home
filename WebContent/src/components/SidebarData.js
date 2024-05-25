@@ -12,13 +12,13 @@ export const SidebarData = [
   },
   {
     title: 'Meus anúncios',
-    path: '/reports',
+    path: '/MyAds',
     icon: <AiIcons.AiFillHome />,
     cName: 'nav-text'
   },
   {
     title: 'Buscar',
-    path: '/products',
+    path: '/find',
     icon: <AiIcons.AiOutlineSearch />,
     cName: 'nav-text'
   },
