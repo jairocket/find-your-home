@@ -22,8 +22,7 @@ docker-compose down
 mvn spring-boot:run 
 ```
 ## Prototipagem do projeto
-Rascunho funcional do produto final para validar a ideia no nosso projeto, com o objetivo de
-dar um vislumbre de como o Find Your Home será.
+Rascunho funcional do produto final para validar a ideia no nosso projeto e dar um vislumbre de como o Find Your Home será.
 
 ### Landing Page
 
