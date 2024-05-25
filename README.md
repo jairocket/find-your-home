@@ -22,7 +22,8 @@ docker-compose down
 mvn spring-boot:run 
 ```
 ### Prototipagem do projeto
-
+Nosso rascunho funcional do produto final, para validar a ideia no nosso projeto;
+Para dar um vislumbre de como o Find You Home será.
 
 ## Requisitos funcionais
 
