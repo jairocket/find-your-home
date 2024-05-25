@@ -22,6 +22,8 @@ docker-compose down
 mvn spring-boot:run 
 ```
 ## Prototipagem do projeto
+Rascunho funcional do produto final para validar a ideia no nosso projeto, com o objetivo de
+dar um vislumbre de como o Find Your Home será.
 
 ### Landing Page
 
@@ -40,6 +42,9 @@ mvn spring-boot:run
 ### Avaliações
 
 ![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Avalaia%C3%A7%C3%B5es.jpeg?raw=true)
+### Prototipagem do projeto
+Nosso rascunho funcional do produto final, para validar a ideia no nosso projeto;
+Para dar um vislumbre de como o Find You Home será.
 
 ## Requisitos funcionais
 
