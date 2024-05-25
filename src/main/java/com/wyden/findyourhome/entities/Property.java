@@ -1,6 +1,5 @@
 package com.wyden.findyourhome.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wyden.findyourhome.entities.enums.PropertyType;
 import jakarta.persistence.*;
 

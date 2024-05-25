@@ -1,13 +1,13 @@
 package com.wyden.findyourhome.dto;
 
 
-public class UpdateCustomerDTO {
+public class UpdateCostumerDTO {
 
     private final Long id;
     private final String name;
     private final String email;
 
-    public UpdateCustomerDTO(
+    public UpdateCostumerDTO(
         Long id, 
         String name, 
         String email

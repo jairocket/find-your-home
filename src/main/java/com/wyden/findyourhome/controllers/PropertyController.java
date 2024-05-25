@@ -52,7 +52,7 @@ public class PropertyController {
         Property createdProperty = service.create(newProperty);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(createdProperty.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(newProperty);
+        return ResponseEntity.created(uri).body(createdProperty);
     }
 
     @PutMapping

@@ -19,11 +19,33 @@ docker-compose down
 ```
 ### Execute a aplicação
 ```
-mvn spring-boot:run 
+mvn spring-boot:run git
 ```
+<<<<<<< HEAD
 ### Prototipagem do projeto
 Nosso rascunho funcional do produto final, para validar a ideia no nosso projeto;
 Para dar um vislumbre de como o Find You Home será.
+=======
+## Prototipagem do projeto
+
+### Landing Page
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Capa.jpeg?raw=true)
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Fundo.jpeg?raw=true)
+
+### Pesquisa
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Pesquisa.jpeg?raw=true)
+
+### Detalhes
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Info_Imovel.jpeg?raw=true)
+
+### Avaliações
+
+![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Avalaia%C3%A7%C3%B5es.jpeg?raw=true)
+>>>>>>> 98a786791e307bffb7d6a9b00c5b441a7d3fe900
 
 ## Requisitos funcionais
 

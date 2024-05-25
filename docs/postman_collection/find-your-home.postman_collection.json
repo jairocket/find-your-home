@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c7ba4ae3-4706-43b9-8b33-68ec78738148",
+		"_postman_id": "156af3dd-f688-4c80-bdb1-63e011c7c667",
 		"name": "find-your-home",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "26433822"
@@ -75,7 +75,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 1,\r\n  \"rooms\": 10,\r\n  \"bathrooms\": 2,\r\n  \"privateParkingSpace\": 1,\r\n  \"taxes\": 250.50,\r\n  \"fee\": 100.75,\r\n  \"area\": 150.0\r\n}\r\n",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"rooms\": 10,\r\n  \"bathrooms\": 2,\r\n  \"privateParkingSpace\": 1,\r\n  \"taxes\": 250.50,\r\n  \"fee\": 100.75,\r\n  \"area\": 152.0\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 			]
 		},
 		{
-			"name": "Customer",
+			"name": "Costumer",
 			"item": [
 				{
 					"name": "Telephone",
@@ -141,7 +141,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "\r\n      {\r\n        \"customerId\": 1,\r\n        \"number\": \"71982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"raw": "\r\n      {\r\n        \"costumerId\": 1,\r\n        \"number\": \"71982239845\",\r\n        \"mainNumber\": true\r\n      }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -149,14 +149,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/individual-customers/telephone",
+									"raw": "http://localhost:8080/costumers/telephone",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"individual-customers",
+										"costumers",
 										"telephone"
 									]
 								}
@@ -170,7 +170,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "\r\n      {\r\n        \"id\": 1,\r\n        \"number\": \"81982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"raw": "\r\n      {\r\n        \"id\": 5,\r\n        \"number\": \"555-1235\",\r\n        \"mainNumber\": false\r\n      }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -178,14 +178,14 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/individual-customers/telephone",
+									"raw": "http://localhost:8080/costumers/telephone",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"individual-customers",
+										"costumers",
 										"telephone"
 									]
 								}
@@ -199,7 +199,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "\r\n      {\r\n        \"customerId\": 1,\r\n        \"number\": \"71982239845\",\r\n        \"mainNumber\": true\r\n      }",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -207,16 +207,16 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/individual-customers/telephone/1",
+									"raw": "http://localhost:8080/costumers/telephone/5",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8080",
 									"path": [
-										"individual-customers",
+										"costumers",
 										"telephone",
-										"1"
+										"5"
 									]
 								}
 							},
@@ -230,14 +230,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/individual-customers",
+							"raw": "http://localhost:8080/costumers",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"individual-customers"
+								"costumers"
 							]
 						}
 					},
@@ -249,14 +249,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/individual-customers/1",
+							"raw": "http://localhost:8080/costumers/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"individual-customers",
+								"costumers",
 								"1"
 							]
 						}
@@ -269,15 +269,15 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/individual-customers/1",
+							"raw": "http://localhost:8080/costumers/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"individual-customers",
-								"1"
+								"costumers",
+								"5"
 							]
 						}
 					},
@@ -290,7 +290,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Nome do Cliente\",\r\n    \"email\": \"cliente@example.com\",\r\n    \"phone\": \"123456789\",\r\n    \"cpf\": \"62978873060\",\r\n    \"cnpj\": null\r\n}\r\n",
+							"raw": "{\r\n    \"name\": \"Nome do Cliente\",\r\n    \"email\": \"cliente@ex2ample.com\",\r\n    \"cpf\": \"492.422.050-79\",\r\n    \"cnpj\": null,\r\n    \"telephones\": [\r\n    {\r\n      \"costumerId\": 12345,\r\n      \"number\": \"555-1234\",\r\n      \"mainNumber\": true\r\n    },\r\n    {\r\n      \"costumerId\": 12345,\r\n      \"number\": \"555-5678\",\r\n      \"mainNumber\": false\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -298,14 +298,44 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/individual-customers",
+							"raw": "http://localhost:8080/costumers/individual",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"individual-customers"
+								"costumers",
+								"individual"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Corporate Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nome do Cliente\",\r\n    \"email\": \"corporatecliente@example.com\",\r\n    \"cpf\": null,\r\n    \"cnpj\": \"33.182.052/0001-85\",\r\n    \"telephones\": [\r\n    {\r\n      \"costumerId\": 12345,\r\n      \"number\": \"555-1224\",\r\n      \"mainNumber\": true\r\n    },\r\n    {\r\n      \"costumerId\": 12345,\r\n      \"number\": \"555-5638\",\r\n      \"mainNumber\": false\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/costumers/corporate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"costumers",
+								"corporate"
 							]
 						}
 					},
@@ -318,7 +348,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Novo Nome\",\r\n  \"email\": \"novoemail@example.com\",\r\n  \"cpf\": \"79101086057\",\r\n  \"cnpj\": null\r\n}\r\n",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"name\": \"Novo Nome\",\r\n  \"email\": \"novoemail@example.com\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -326,14 +356,94 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/individual-customers",
+							"raw": "http://localhost:8080/costumers",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"individual-customers"
+								"costumers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Advertisement",
+			"item": [
+				{
+					"name": "GetAll Advertisement",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/advertisements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"advertisements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Advertisement",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"costumerId\": 1,\r\n  \"propertyId\": 1,\r\n  \"value\": 150000.00,\r\n  \"description\": \"A spacious apartment with a beautiful view.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/advertisements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"advertisements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Advertisement",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"value\": 150000.00,\r\n  \"description\": \"Updated description of the advertisement.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/advertisements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"advertisements"
 							]
 						}
 					},

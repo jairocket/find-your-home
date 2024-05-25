@@ -7,5 +7,10 @@ spring:
     password: postgres
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
+#max file and request size
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 11MB

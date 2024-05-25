@@ -46,7 +46,6 @@ public class Address implements Serializable {
     public Address() {
     }
 
-
     public Long getId() {
         return this.id;
     }

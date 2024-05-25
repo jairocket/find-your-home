@@ -1,6 +1,7 @@
 package com.wyden.findyourhome.entities;
 
-import com.wyden.findyourhome.exceptions.CustomerException;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.wyden.findyourhome.exceptions.CostumerException;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,9 +14,13 @@ import java.util.regex.Pattern;
 public class IndividualCostumer extends Costumer {
     @Column(unique = true)
     private String CPF;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Telephone> telephones;
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
 
     public IndividualCostumer (
@@ -72,12 +77,12 @@ public class IndividualCostumer extends Costumer {
     }
 
     private void validateCpf(String cpf) {
-        cpf = Optional.ofNullable(cpf).orElseThrow(() -> new CustomerException("É preciso informar o CPF"));
+        cpf = Optional.ofNullable(cpf).orElseThrow(() -> new CostumerException("É preciso informar o CPF"));
         Pattern cpfPattern = Pattern.compile("[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}");
         Matcher cpfMatcher = cpfPattern.matcher(cpf);
 
         if(!cpfMatcher.matches()) {
-            throw new CustomerException("CPF inválido.");
+            throw new CostumerException("CPF inválido.");
         }
 
     }
