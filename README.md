@@ -19,15 +19,11 @@ docker-compose down
 ```
 ### Execute a aplicação
 ```
-mvn spring-boot:run git
+mvn spring-boot:run
 ```
-<<<<<<<<< Temporary merge branch 1
-### Prototipagem do projeto
-Nosso rascunho funcional do produto final, para validar a ideia no nosso projeto;
-Para dar um vislumbre de como o Find You Home será.
-=========
+
 ## Prototipagem do projeto
-Rascunho funcional do produto final para validar a ideia no nosso projeto e dar um vislumbre de como o Find Your Home será.
+Rascunho funcional do produto final para validar a ideia do projeto e dar um vislumbre de como o Find Your Home será.
 
 ### Landing Page
 
@@ -46,7 +42,6 @@ Rascunho funcional do produto final para validar a ideia no nosso projeto e dar 
 ### Avaliações
 
 ![](https://github.com/jairocket/find-your-home/blob/main/docs/Prototypes/Avalaia%C3%A7%C3%B5es.jpeg?raw=true)
->>>>>>>>> Temporary merge branch 2
 
 ## Requisitos funcionais
 
