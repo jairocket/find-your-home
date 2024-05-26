@@ -19,9 +19,10 @@ docker-compose down
 ```
 ### Execute a aplicação
 ```
-mvn spring-boot:run 
+mvn spring-boot:run
 ```
 ## Prototipagem do projeto
+Rascunho funcional do produto final para validar a ideia do projeto e dar um vislumbre de como o Find Your Home será.
 
 ### Landing Page
 
