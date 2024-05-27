@@ -51,3 +51,28 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - Apenas um telefone principal deve ser cadastrado
 - O mesmo email não pode ser cadastrado para Clientes diferentes;
 
+### Estrutura do front-end do projeto
+/src
+  /components   # Componentes reutilizáveis
+  /pages        # Páginas do aplicativo
+  /assets       # Imagens, ícones, etc.
+App.css       # Arquivos de estilos (CSS, SCSS)
+App.js        # Componente raiz
+index.js      # Ponto de entrada do aplicativo
+
+### Instruções básicas para iniciar o projeto localmente.
+npm start
+
+### Scripts Disponíveis
+Lista dos scripts que podem ser executados com npm ou yarn.
+
+npm start: Inicializa o servidor de desenvolvimento.
+
+### Tecnologias Utilizadas
+React
+React Router
+Axios
+Componentes estilizados e Móulos CSS
+
+
+
