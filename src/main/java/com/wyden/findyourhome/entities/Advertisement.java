@@ -8,6 +8,8 @@ import org.apache.commons.math3.util.Precision;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -37,6 +39,8 @@ public class Advertisement implements Serializable{
 
     private String description;
 
+    private List<String> images;
+
     public Advertisement(
             Costumer costumer,
             AdvertisementStatus status,
@@ -54,6 +58,7 @@ public class Advertisement implements Serializable{
         this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
+        this.images = new ArrayList<>();
     }
 
     public Advertisement(){}
@@ -66,7 +71,8 @@ public class Advertisement implements Serializable{
             Instant postDate,
             Double value,
             Instant soldIn,
-            String description
+            String description,
+            List<String> images
     ) {
 
         this.id = id;
@@ -77,6 +83,7 @@ public class Advertisement implements Serializable{
         this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
+        this.images = images;
     }
 
     public Long getId() {
@@ -125,6 +132,14 @@ public class Advertisement implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 
     private void validateConstructor(Costumer costumer, Property property) {
