@@ -1,5 +1,12 @@
 # find-your-home
 É um site para encontrar sua casa nova. Você também pode vender ou alugar sua casa.
+Desenvolvido com :coffee: por:
+
+- Everton Mutti
+- Gustavo Lopes
+- Isadora Moura
+- Jailson Anjos
+- Júlia Amorim
   
 ## Infraestrutura
 
@@ -59,7 +66,8 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - Apenas um telefone principal deve ser cadastrado
 - O mesmo email não pode ser cadastrado para Clientes diferentes;
 
-### Estrutura do front-end do projeto
+## Estrutura do front-end do projeto
+```
 /src
   /components   # Componentes reutilizáveis
   /pages        # Páginas do aplicativo
@@ -67,20 +75,20 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 App.css       # Arquivos de estilos (CSS, SCSS)
 App.js        # Componente raiz
 index.js      # Ponto de entrada do aplicativo
-
+``` 
 ### Instruções básicas para iniciar o projeto localmente.
+```
 npm start
-
+```
 ### Scripts Disponíveis
-Lista dos scripts que podem ser executados com npm ou yarn.
 
-npm start: Inicializa o servidor de desenvolvimento.
+Lista dos scripts que podem ser executados com `npm` ou `yarn`.
 
 ### Tecnologias Utilizadas
-React
-React Router
-Axios
-Componentes estilizados e Móulos CSS
+- React
+- React Router
+- Axios
+- Componentes estilizados e Móulos CSS
 
 ### Link para o repositório front-end 
 https://github.com/KaKeeM/WebContent 
