@@ -1,6 +1,7 @@
 # find-your-home
 É um site para encontrar sua casa nova. Você também pode vender ou alugar sua casa.
-Desenvolvido com :coffee: por:
+
+## Desenvolvido com :coffee: por:
 
 - Everton Mutti
 - Gustavo Lopes
