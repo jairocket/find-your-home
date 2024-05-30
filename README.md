@@ -80,6 +80,7 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - Deve ser possível editar um Anúncio;
 - Deve ser possível alterar o status de um Anúncio;
 - Deve ser possível filtrar Anúncios pelo respectivo status;
+- Para fins relatório utilizamos a busca por todos os Anúncios, a qual exibirá os removidos pelo usuário, finalizados e ativos.
 
 ## Estrutura do front-end do projeto
 ```
@@ -106,5 +107,5 @@ Lista dos scripts que podem ser executados com `npm` ou `yarn`.
 - Componentes estilizados e Móulos CSS
 
 ### Link para o repositório front-end 
-https://github.com/KaKeeM/WebContent 
+  https://github.com/KaKeeM/WebContent 
 
