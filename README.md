@@ -21,6 +21,14 @@ docker-compose down
 ```
 mvn spring-boot:run
 ```
+## Dicionário de dados
+
+Você pode obter um detalhamento a respeito das entidades que compõem esta aplicação [aqui](https://github.com/jairocket/find-your-home/blob/main/docs/bd/diagram/TABLE.png?raw=true).
+
+### Diagrama Entidade Relacionamento 
+
+![](https://github.com/jairocket/find-your-home/tree/main/docs/bd/DD)
+
 ## Prototipagem do projeto
 Rascunho funcional do produto final para validar a ideia do projeto e dar um vislumbre de como o Find Your Home será.
 
