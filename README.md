@@ -60,12 +60,25 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 
 ## Requisitos funcionais
 
-- O mesmo CPF não pode ser cadastrado para Clientes diferentes;
-- O mesmo CNPJ não pode ser cadastrado para Clientes diferentes;
-- O mesmo telefone não pode ser cadastrado mais de uma vez;
-- Clientes pode cadastrar um ou mais telefones;
-- Apenas um telefone principal deve ser cadastrado
+- Deve ser possível cadastrar clientes
+- Deve ser possível listar clientes
+- Deve ser possível editar o nome e o email dos clientes cadastrado
+- Deve ser possível deletar um cliente cadastrado
+- O CPF e o CNPJ dos Clientes não podem ser cadastrados mais de uma vez;
+- O CPF deve ter o formato "xxx.xxx.xxx-xx";
+- O CNPJ deve ter o formato "xx.xxx.xxx/xxxx-xx"
+- O mesmo Telefone não pode ser cadastrado mais de uma vez;
+- Clientes pode cadastrar um ou mais Telephones;
+- Apenas um Telefone principal deve ser cadastrado por Clientes;
 - O mesmo email não pode ser cadastrado para Clientes diferentes;
+- Deve ser possível cadastrar um Imóvel
+- Deve ser possível editar dados de um Imóvel
+- Deve ser possível deletar um Imóvel
+- Deve ser possível listar os Anúncios
+- Deve ser possĩvel cadastrar Anúncios novos
+- Deve ser possível deletar Anúncios de forma lógica
+- Deve ser possível editar um Anúncio
+- Deve ser possível alterar o status de um Anúncio
 
 ## Estrutura do front-end do projeto
 ```
