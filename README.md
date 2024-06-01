@@ -37,6 +37,12 @@ Você pode obter um detalhamento a respeito das entidades que compõem esta apli
 
 ![](https://github.com/jairocket/find-your-home/blob/main/docs/bd/diagram/TABLE.png?raw=true)
 
+## Definição da API
+
+Para visualizar a definição dos endpoints, acesse o Swagger. Para tanto, rode o projeto e acesse:
+
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
 ## Prototipagem do projeto
 Rascunho funcional do produto final para validar a ideia do projeto e dar um vislumbre de como o Find Your Home será.
 
@@ -80,7 +86,7 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - Deve ser possível editar um Anúncio;
 - Deve ser possível alterar o status de um Anúncio;
 - Deve ser possível filtrar Anúncios pelo respectivo status;
-- Para fins relatório utilizamos a busca por todos os Anúncios, a qual exibirá os removidos pelo usuário, finalizados e ativos.
+- Para fins de relatório, utilizamos a busca por todos os Anúncios, a qual exibirá os removidos pelo usuário, finalizados e ativos.
 
 ## Estrutura do front-end do projeto
 ```
