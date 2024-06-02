@@ -74,7 +74,7 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - O CPF deve ter o formato "xxx.xxx.xxx-xx";
 - O CNPJ deve ter o formato "xx.xxx.xxx/xxxx-xx"
 - O mesmo Telefone não pode ser cadastrado mais de uma vez;
-- Clientes pode cadastrar um ou mais Telephones;
+- Clientes pode cadastrar um ou mais Telefones;
 - Apenas um Telefone principal deve ser cadastrado por Clientes;
 - O mesmo email não pode ser cadastrado para Clientes diferentes;
 - Deve ser possível cadastrar um Imóvel;
