@@ -81,7 +81,7 @@ Rascunho funcional do produto final para validar a ideia do projeto e dar um vis
 - Deve ser possível editar dados de um Imóvel;
 - Deve ser possível deletar um Imóvel;
 - Deve ser possível listar os Anúncios;
-- Deve ser possĩvel cadastrar Anúncios novos;
+- Deve ser possível cadastrar Anúncios novos;
 - Deve ser possível deletar Anúncios de forma lógica;
 - Deve ser possível editar um Anúncio;
 - Deve ser possível alterar o status de um Anúncio;
