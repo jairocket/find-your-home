@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity
-@Table(name = "ADVERTISEMENT")
+@Table(name = "ADVERTISEMENTS")
 public class Advertisement implements Serializable{
 
     @Id
@@ -31,7 +31,7 @@ public class Advertisement implements Serializable{
     @MapsId
     private Property property;
 
-    private Instant postDate;
+    private Instant postedIn;
 
     private Double value;
 
@@ -45,7 +45,7 @@ public class Advertisement implements Serializable{
             Costumer costumer,
             AdvertisementStatus status,
             Property property,
-            Instant postDate,
+            Instant postedIn,
             Double value,
             Instant soldIn,
             String description
@@ -54,7 +54,7 @@ public class Advertisement implements Serializable{
         this.costumer = costumer;
         this.status = status;
         this.property = property;
-        this.postDate = postDate;
+        this.postedIn = postedIn;
         this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
@@ -68,7 +68,7 @@ public class Advertisement implements Serializable{
             Costumer costumer,
             AdvertisementStatus status,
             Property property,
-            Instant postDate,
+            Instant postedIn,
             Double value,
             Instant soldIn,
             String description,
@@ -79,7 +79,7 @@ public class Advertisement implements Serializable{
         this.costumer = costumer;
         this.status = status;
         this.property = property;
-        this.postDate = postDate;
+        this.postedIn = postedIn;
         this.value = round(value);
         this.soldIn = soldIn;
         this.description = description;
@@ -106,8 +106,8 @@ public class Advertisement implements Serializable{
         return this.property;
     }
 
-    public Instant getPostDate() {
-        return this.postDate;
+    public Instant getPostedIn() {
+        return this.postedIn;
     }
 
     public Double getValue() {
